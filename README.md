@@ -25,3 +25,28 @@ GHA client can be injected in pipeline.
 
 Envelops are in ```envelops```.
 
+## 4. Examples
+
+Simple example of using ```/create``` within some Github Actions
+
+```bash
+name: Create RFC
+
+on:
+  workflow_dispatch:
+    inputs:
+      Description:
+        required: true
+        type: string
+        default: 'Deployment of the new version of PROJECT_NAME with bugfixes and new functionality required by BU_NAME'
+
+jobs:
+    create_rfc:
+        runs-on: devportal-atmeta-runner
+        steps:
+        - uses: actions/checkout@v3
+
+        - name: Create RFC
+          run: ./projects/gsn/client/client.sh cr ${{inputs.Description}}
+
+```
