@@ -3,24 +3,17 @@
 ### Program to manipulate RFC ticketing within Linux ###
 
 ################# Styles #################
-
-# Regular Colors
-Black='\033[0;30m'        # Black
-Red='\033[0;31m'          # Red
-Green='\033[0;32m'        # Green
-Yellow='\033[0;33m'       # Yellow
-Blue='\033[0;34m'         # Blue
-Purple='\033[0;35m'       # Purple
-Cyan='\033[0;36m'         # Cyan
-White='\033[0;37m'        # White
-
-# Reset
-Color_Off='\033[0m'       # Text Reset
-
+source "styles/colors.sh"
 ################# End of styles #################
 
 ################# Globals #################
-is_create_with_description=false
+source "globals/globals.sh"
+################# End of globals #################
+
+################# Functions #################
+source "functions/print_envelope_attributes.sh"
+source "functions/save_output.sh"
+################# End of functions #################
 
 ################# Check if the arguments are set correctly #################
 if [ "$#" -ne 2 ]; then
@@ -45,21 +38,7 @@ esac
 ################# End of checking if the arguments values are correct #################
 
 ################# Printing the envelope attributes #################
-echo -e "$Blue Envelope attributes: $Color_Off"
-cat "envelops/test/${ACTION}.xml" | grep -E "<[a-z]+>"
-input_xml="envelops/test/${ACTION}.xml"
-if [[ ! -f "$input_xml" ]]; then
-    echo -e "$Red Envelope $input_xml does not exist! $Color_Off"
-    exit 1
-fi
-
-
-grep -oP '<web:\K[^>]+(?=>[^<]+<\/web:[^>]+>)' "$input_xml" | while read -r tag; do
-    value=$(grep -oP "(?<=<web:$tag>)[^<]+" "$input_xml")
-    echo -e "$Blue $tag:$value $Color_Off"
-done
-
-echo -e "$Blue Envelope attributes end $Color_Off"
+print_envelope_attributes "$ACTION"
 ################# End of printing the envelope attributes #################
 
 ################# create with description #################
@@ -89,27 +68,29 @@ fi
 ################# end of create with description #################
 
 ################# Editing the envelope attributes #################
-if [ "$is_create_with_description" = false ]; then
-    xml_data=$(cat "$input_xml")
+if [ "$1" = "create" ] || [ "$1" = "cr" ] || [ "$1" = "update" ] || [ "$1" = "u" ]; then
+    if [ "$is_create_with_description" = false ]; then
+        xml_data=$(cat "$input_xml")
 
-    tags=($(grep -oP '<web:\K[^>]+(?=>[^<]+<\/web:[^>]+>)' "$input_xml"))
+        tags=($(grep -oP '<web:\K[^>]+(?=>[^<]+<\/web:[^>]+>)' "$input_xml"))
 
-    for tag in "${tags[@]}"; do
-        old_value=$(grep -oP "(?<=<web:$tag>)[^<]+" "$input_xml")
+        for tag in "${tags[@]}"; do
+            old_value=$(grep -oP "(?<=<web:$tag>)[^<]+" "$input_xml")
 
-        echo -e "$Blue Current value of $tag is $old_value $Color_Off"
-        read -p "$Yellow Enter new value (or press enter to keep the old value):" new_value
-        echo -e "$Color_Off"
+            echo -e "$Blue Current value of $tag is $old_value $Color_Off"
+            read -p "$Yellow Enter new value (or press enter to keep the old value):" new_value
+            echo -e "$Color_Off"
 
-        # if new value is present, we update
-        if [[ -n "$new_value" ]]; then
-            xml_data=$(echo -e "$xml_data" | sed "s|<web:$tag>$old_value</web:$tag>|<web:$tag>$new_value</web:$tag>|")
-        fi
-    done
+            # if new value is present, we update
+            if [[ -n "$new_value" ]]; then
+                xml_data=$(echo -e "$xml_data" | sed "s|<web:$tag>$old_value</web:$tag>|<web:$tag>$new_value</web:$tag>|")
+            fi
+        done
 
-    echo "$xml_data"
-    # here we change the envelope
-    echo "$xml_data" > "$input_xml"
+        echo "$xml_data"
+        # here we change the envelope
+        echo "$xml_data" > "$input_xml"
+    fi
 fi
 ################# End of editing the envelope attributes #################
 
@@ -127,13 +108,14 @@ fi
 ################# End of checking if the ticket number is valid #################
 
 ################# Calling the service script #################
-bash "services/${ACTION}_rfc_ticket.sh" "${TICKET_NUMBER}"
+# TODO fix the requests to work
+# TODO continue to split client into functions
+# bash "services/${ACTION}_rfc_ticket.sh" "${TICKET_NUMBER}"
 ################# End of calling the service script #################
 
-################# Printing the output #################
+################# Printing the response #################
 echo -e "$Green Response: $Color_Off"
-cat "output.xml"
-
+print_envelope_attributes "$ACTION"
 
 case $1 in
     create|cr) echo -e "$Green Finishing creating the ticket... $Color_Off" ;;
@@ -142,4 +124,12 @@ case $1 in
     read|r) echo -e "$Green Finishing reading the ticket... $Color_Off" ;;
     *) echo -e "$Red Invalid action. Use create|cr, update|u, read|r or close|cl $Color_Off"; exit 1 ;;
 esac
-################# End of printing the output #################
+################# End of printing the response #################
+
+################# Saving the output #################
+if [ "$1" = "create" ] || [ "$1" = "cr" ] || [ "$1" = "update" ] || [ "$1" = "u" ]; then
+    save_output "$ACTION"
+else
+    echo -e "$Blue The action is not create or update, so we do not alter anything. $Color_Off"
+fi
+################# End of saving the output #################

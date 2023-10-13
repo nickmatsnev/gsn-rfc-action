@@ -6,7 +6,12 @@ Will create, update, close GSN RFC
 
 ## 2. User Guide
 
-You can use client.sh
+You can use client.sh like this:
+```angular2html
+./client.sh create "description"
+./client.sh update RFC1234567
+./client.sh close RFC1234567
+```
 
 | Command | Alias | Description | Example           |
 |---------|-------|-------------|-------------------|
@@ -25,3 +30,6 @@ GHA client can be injected in pipeline.
 
 Envelops are in ```envelops```.
 
+## Architecture of the project
+
+![Architecture](styles/rfcautomated.png)
