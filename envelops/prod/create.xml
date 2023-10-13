@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:web="https://soap.servicenow.dhl.com/cchm_change_request_create.do?SOAP"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ ">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <web:Create>
+            <web:short_description>This is tested creation RFC</web:short_description>
+            <web:u_requested_by>nikita.matsnev@dhl.com</web:u_requested_by>
+            <web:u_change_coordinator>ondrej.sztacho@dhl.com</web:u_change_coordinator>
+            <web:priority>4</web:priority>
+            <web:assignment_group>GROUP API Developer Portal</web:assignment_group>
+            <web:category>Release</web:category>
+            <web:start_date>2023-10-10 12:00:00</web:start_date>
+            <web:end_date>2023-10-10 13:00:00</web:end_date>
+            <web:u_application_name>devportal</web:u_application_name>
+            <web:u_application_type>Internally Developed Application</web:u_application_type>
+        </web:Create>
+    </soapenv:Body>
+</soapenv:Envelope>
