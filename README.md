@@ -7,7 +7,7 @@ Will create, update, close GSN RFC
 ## 2. User Guide
 
 You can use client.sh like this:
-```angular2html
+```bash
 ./client.sh create "description"
 ./client.sh update RFC1234567
 ./client.sh close RFC1234567
