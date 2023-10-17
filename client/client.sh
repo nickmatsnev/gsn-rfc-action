@@ -8,10 +8,12 @@ source "styles/colors.sh"
 
 ################# Globals #################
 source "globals/globals.sh"
+source "secrets.sh"
 ################# End of globals #################
 
 ################# Functions #################
 source "functions/print_envelope_attributes.sh"
+source "functions/print_response_envelope_attributes.sh"
 source "functions/save_output.sh"
 ################# End of functions #################
 
@@ -110,12 +112,11 @@ fi
 ################# Calling the service script #################
 # TODO fix the requests to work
 # TODO continue to split client into functions
-# bash "services/${ACTION}_rfc_ticket.sh" "${TICKET_NUMBER}"
+bash "services/${ACTION}_rfc_ticket.sh" "${TICKET_NUMBER}"
 ################# End of calling the service script #################
 
 ################# Printing the response #################
-echo -e "$Green Response: $Color_Off"
-print_envelope_attributes "$ACTION"
+print_response_envelope_attributes "$ACTION"
 
 case $1 in
     create|cr) echo -e "$Green Finishing creating the ticket... $Color_Off" ;;
