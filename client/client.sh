@@ -52,10 +52,10 @@ if [ "$1" = "create" ] || [ "$1" = "cr" ]; then
         xml_data=$(cat "envelops/test/create_gha.xml")
 
         # Store the old value of short description for possible future use or display
-        old_value=$(echo "$xml_data" | grep -oP "(?<=<web:short_description>)[^<]+(?=</web:short_description>)")
+        old_value=$(echo "$xml_data" | grep -oP "(?<=<short_description>)[^<]+(?=</short_description>)")
 
         # Update the XML data with the new short description
-        xml_data=$(echo "$xml_data" | sed "s|<web:short_description>[^<]*</web:short_description>|<web:short_description>${NEW_SHORT_DESCRIPTION}</web:short_description>|g")
+        xml_data=$(echo "$xml_data" | sed "s|<short_description>[^<]*</short_description>|<short_description>${NEW_SHORT_DESCRIPTION}</short_description>|g")
 
         echo "Fast RFC creation"
 
@@ -74,10 +74,10 @@ if [ "$1" = "create" ] || [ "$1" = "cr" ] || [ "$1" = "update" ] || [ "$1" = "u"
     if [ "$is_create_with_description" = false ]; then
         xml_data=$(cat "$input_xml")
 
-        tags=($(grep -oP '<web:\K[^>]+(?=>[^<]+<\/web:[^>]+>)' "$input_xml"))
+        tags=($(grep -oP '<\K[^>]+(?=>[^<]+<\/[^>]+>)' "$input_xml"))
 
         for tag in "${tags[@]}"; do
-            old_value=$(grep -oP "(?<=<web:$tag>)[^<]+" "$input_xml")
+            old_value=$(grep -oP "(?<=<$tag>)[^<]+" "$input_xml")
 
             echo -e "$Blue Current value of $tag is $old_value $Color_Off"
             read -p "$Yellow Enter new value (or press enter to keep the old value):" new_value
@@ -85,7 +85,7 @@ if [ "$1" = "create" ] || [ "$1" = "cr" ] || [ "$1" = "update" ] || [ "$1" = "u"
 
             # if new value is present, we update
             if [[ -n "$new_value" ]]; then
-                xml_data=$(echo -e "$xml_data" | sed "s|<web:$tag>$old_value</web:$tag>|<web:$tag>$new_value</web:$tag>|")
+                xml_data=$(echo -e "$xml_data" | sed "s|<$tag>$old_value</$tag>|<$tag>$new_value</$tag>|")
             fi
         done
 

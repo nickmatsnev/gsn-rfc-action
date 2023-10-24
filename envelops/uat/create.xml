@@ -5,21 +5,20 @@
             <!--Optional:-->
             <template>?</template>
             <!--Optional:-->
-            <short_description>?</short_description>
+            <short_description>his is tested creation RFC</short_description>
             <!--Optional:-->
-            <u_requested_by>?</u_requested_by>
+            <u_requested_by>nikita.matsnev@dhl.com</u_requested_by>
             <!--Optional:-->
-            <assignment_group>?</assignment_group>
+            <assignment_group>GROUP API Developer Portal</assignment_group>
             <!--Optional:-->
             <assigned_to>?</assigned_to>
             <!--Optional:-->
-            <u_change_coordinator>?</u_change_coordinator>
+            <u_change_coordinator>ondrej.sztacho@dhl.com</u_change_coordinator>
             <!--Optional:-->
-            <priority>?</priority>
+            <priority>4</priority>
             <!--Optional:-->
-            <start_date>?</start_date>
-            <!--Optional:-->
-            <end_date>?</end_date>
+            <start_date>2023-10-10 12:00:00</start_date>
+            <end_date>2023-10-10 13:00:00</end_date>
             <!--Optional:-->
             <u_reason_replanned>?</u_reason_replanned>
             <!--Optional:-->
@@ -29,7 +28,7 @@
             <!--Optional:-->
             <type>?</type>
             <!--Optional:-->
-            <category>?</category>
+            <category>Release</category>
             <!--Optional:-->
             <u_subcategory>?</u_subcategory>
             <!--Optional:-->
@@ -185,10 +184,10 @@
             <!--Optional:-->
             <u_service_impact>?</u_service_impact>
             <!--Optional:-->
-            <u_application_type>?</u_application_type>
+            <u_application_type>Internally Developed Application</u_application_type>
             <!--Optional:-->
-            <u_application_name>?</u_application_name>
-            <!--Optional:-->
+            <u_application_name>devportal</u_application_name>
+            <!--Optional: TODO add dynamic version binding -->
             <u_application_version>?</u_application_version>
             <!--Optional:-->
             <u_backend_services>?</u_backend_services>

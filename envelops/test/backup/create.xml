@@ -6,7 +6,7 @@
     <soapenv:Header/>
     <soapenv:Body>
         <web:Create>
-            <web:short_description>This is tested creation RFC</web:short_description>
+            <web:short_description>eeee</web:short_description>
             <web:u_requested_by>nikita.matsnev@dhl.com</web:u_requested_by>
             <web:assigned_to>nikita.matsnev@dhl.com</web:assigned_to>
             <web:u_change_coordinator>ondrej.sztacho@dhl.com</web:u_change_coordinator>
