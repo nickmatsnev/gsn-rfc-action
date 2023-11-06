@@ -10,3 +10,5 @@ GSN has five environments:
 * PROD
 
 For now just test env will be used.
+
+In the backup I keep default request so it is easier to understand the mechanics.

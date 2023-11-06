@@ -49,7 +49,7 @@ if [ "$1" = "create" ] || [ "$1" = "cr" ]; then
         NEW_SHORT_DESCRIPTION=$2
 
         # Load the XML data from file
-        xml_data=$(cat "envelops/test/create_gha.xml")
+        xml_data=$(cat "envelops/uat/create.xml")
 
         # Store the old value of short description for possible future use or display
         old_value=$(echo "$xml_data" | grep -oP "(?<=<short_description>)[^<]+(?=</short_description>)")
@@ -60,11 +60,11 @@ if [ "$1" = "create" ] || [ "$1" = "cr" ]; then
         echo "Fast RFC creation"
 
         # Save the updated XML data back to file
-        echo "$xml_data" > "envelops/test/${ACTION}.xml"
+        echo "$xml_data" > "envelops/uat/${ACTION}.xml"
         echo -e "$Blue Current value of description is:\n$old_value $Color_Off"
         echo -e "$Yellow New value of description is:\n${NEW_SHORT_DESCRIPTION} $Color_Off"
         is_create_with_description=true
-        echo "$xml_data" > "envelops/test/${ACTION}.xml"
+        echo "$xml_data" > "envelops/uat/${ACTION}.xml"
     fi
 fi
 ################# end of create with description #################
