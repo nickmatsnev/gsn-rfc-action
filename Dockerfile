@@ -10,6 +10,4 @@ RUN chmod u+x ./**/*.sh
 
 RUN chmod +x client/gha_client.sh
 
-RUN ls -la
-
 ENTRYPOINT ["/entrypoint.sh"]
