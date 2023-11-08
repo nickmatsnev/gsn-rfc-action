@@ -5,7 +5,7 @@ function print_response_envelope_attributes() {
 
     echo -e "\n\n $Blue Response body: $Color_Off"
     cat "responses/uat/${ACTION}_response.xml" | grep -E "<[a-z]+>"
-    input_xml="envelops/uat/${ACTION}.xml"
+    input_xml="responses/uat/${ACTION}_response.xml"
     if [[ ! -f "$input_xml" ]]; then
         echo -e "$Red Envelope $input_xml does not exist! $Color_Off"
         exit 1
@@ -13,8 +13,8 @@ function print_response_envelope_attributes() {
     echo -e "$Blue Response body end \n\n $Color_Off"
 
     echo -e "$Blue Response envelope attributes: $Color_Off"
-    grep -oP '<web:\K[^>]+(?=>[^<]+<\/web:[^>]+>)' "$input_xml" | while read -r tag; do
-        value=$(grep -oP "(?<=<web:$tag>)[^<]+" "$input_xml")
+    grep -oP '<\K[^>]+(?=>[^<]+<\/[^>]+>)' "$input_xml" | while read -r tag; do
+        value=$(grep -oP "(?<=<$tag>)[^<]+" "$input_xml")
         echo -e "$Blue $tag:$value $Color_Off"
     done
     echo -e "$Blue Envelope attributes end $Color_Off"

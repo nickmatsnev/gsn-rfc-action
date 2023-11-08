@@ -22,8 +22,8 @@ email_regex="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
 
 datetime_regex="^([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$"
 
-if [ "$#" -ne 4 ]; then
-    echo -e "${Yellow} Incorrect number of arguments. Usage: $0 [email] [description] [start_datetime] [end_datetime] $Color_Off"
+if [ "$#" -ne 6 ]; then
+    echo -e "${Yellow} Incorrect number of arguments. Usage: $0 [email] [description] [start_datetime] [end_datetime] [username] [password] $Color_Off"
     exit 1
 fi
 
@@ -50,21 +50,7 @@ echo -e "${Yellow} Starting RFC Ticket creation $Color_Off"
 
 
 ################# Printing the envelope attributes #################
-echo -e "$Blue Envelope attributes: $Color_Off"
-cat "envelops/uat/create.xml" | grep -E "<[a-z]+>"
-input_xml="envelops/uat/create.xml"
-if [[ ! -f "$input_xml" ]]; then
-    echo -e "$Red Envelope $input_xml does not exist! $Color_Off"
-    exit 1
-fi
-
-
-grep -oP '<web:\K[^>]+(?=>[^<]+<\/web:[^>]+>)' "$input_xml" | while read -r tag; do
-    value=$(grep -oP "(?<=<web:$tag>)[^<]+" "$input_xml")
-    echo -e "$Blue $tag:$value $Color_Off"
-done
-
-echo -e "$Blue Envelope attributes end $Color_Off"
+print_envelope_attributes "create"
 ################# End of printing the envelope attributes #################
 
 
@@ -81,7 +67,7 @@ echo "$xml_data" > "envelops/uat/create.xml"
 ################# End of modifying ticket as it is set by user in GitHub Actions #################
 
 ################# Creating the RFC ticket #################
-bash "services/create_rfc_ticket.sh"
+bash "services/create_rfc_ticket.sh" "$5" "$6"
 
 print_response_envelope_attributes "create"
 
@@ -110,7 +96,7 @@ else
     echo "Failed to insert the number into the XML file."
 fi
 
-bash "services/close_rfc_ticket.sh"
+bash "services/close_rfc_ticket.sh" "$5" "$6"
 
 print_response_envelope_attributes "close"
 ################# End of updating to closure of the RFC script #################

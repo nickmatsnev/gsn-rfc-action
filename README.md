@@ -8,17 +8,17 @@ Will create, update, close GSN RFC
 
 You can use client.sh like this:
 ```bash
-./client.sh create "description"
-./client.sh update RFC1234567
-./client.sh close RFC1234567
+./client.sh create "description" "username" "password"
+./client.sh update RFC1234567 "username" "password"
+./client.sh close RFC1234567 "username" "password"
 ```
 
-| Command | Alias | Description | Example           |
-|---------|-------|-------------|-------------------|
-| create  | cr    | create RFC  | cr "description"  |
-| update  | u     | update RFC  | u RFC1234567      |
-| close   | cl    | close  RFC  | cl RFC1234567     |
-| read    | r     | read   RFC  | r  RFC1234567     |
+| Command | Alias | Description | Example                                |
+|---------|-------|-------------|----------------------------------------|
+| create  | cr    | create RFC  | cr "description" "username" "password" |
+| update  | u     | update RFC  | u RFC1234567 "username" "password"     |
+| close   | cl    | close  RFC  | cl RFC1234567 "username" "password"    |
+| read    | r     | read   RFC  | r  RFC1234567 "username" "password"    |
 
 ## 3. Developer Guide
 
@@ -30,6 +30,10 @@ GHA client can be injected in pipeline.
 
 Envelops are in ```envelops```.
 
-## Architecture of the project
+## Architecture of approach when using the manual client
 
 ![Architecture](styles/rfcautomated.png)
+
+## Architecture of approach when using the client dedicated for GHA
+
+![Architecture](styles/rfcautomatedGHA.drawio.png)

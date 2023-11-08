@@ -22,7 +22,7 @@ if [ "$#" -ne 2 ]; then
     if [ "$1" = "create" ] || [ "$1" = "cr" ]; then
         echo -e "${Yellow} Starting RFC Ticket creation $Color_Off"
     else
-        echo -e "$Yellow How to use: $0 [create|cr|update|u|close|cl|read|r] RFCXXXXXXX $Color_Off"
+        echo -e "$Yellow How to use: $0 [create|cr|update|u|close|cl|read|r] RFCXXXXXXX [username] [password] $Color_Off"
         exit 1
     fi
 fi
@@ -112,7 +112,7 @@ fi
 ################# Calling the service script #################
 # TODO fix the requests to work
 # TODO continue to split client into functions
-bash "services/${ACTION}_rfc_ticket.sh" "${TICKET_NUMBER}"
+bash "services/${ACTION}_rfc_ticket.sh" "${TICKET_NUMBER}" "$3" "$4"
 ################# End of calling the service script #################
 
 ################# Printing the response #################
