@@ -1,5 +1,11 @@
 name: 'Use RFC Service'
+author: 'Nikita Matsnev'
 description: 'Create and close fast RFC in GHA'
+
+branding:
+  icon: 'file'
+  color: 'yellow'
+
 inputs:
   Email:
     description: 'Your e-mail'
@@ -28,6 +34,6 @@ runs:
     - ${{ inputs.Email }}
     - ${{ inputs.Description }}
     - ${{ inputs.StartDate }}
-    - ${{ inputs.EmdDate }}
+    - ${{ inputs.EndDate }}
     - ${{ inputs.Username }}
     - ${{ inputs.Password }}
