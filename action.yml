@@ -1,0 +1,33 @@
+name: 'Use RFC Service'
+description: 'Create and close fast RFC in GHA'
+inputs:
+  Email:
+    description: 'Your e-mail'
+    required: true
+  Description:
+    description: 'Description'
+    required: true
+  StartDate:
+    required: true
+    type: datetime
+    description: 'e.g. 2023-11-13 12:00:00'
+  EndDate:
+    required: true
+    type: string
+    description: 'e.g. 2023-11-13 13:00:00'
+  Username:
+    required: true
+    type: string
+  Password:
+    required: true
+    type: string
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.Email }}
+    - ${{ inputs.Description }}
+    - ${{ inputs.StartDate }}
+    - ${{ inputs.EmdDate }}
+    - ${{ inputs.Username }}
+    - ${{ inputs.Password }}

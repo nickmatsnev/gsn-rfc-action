@@ -8,7 +8,6 @@ source "styles/colors.sh"
 
 ################# Globals #################
 source "globals/globals.sh"
-source "secrets.sh"
 ################# End of globals #################
 
 ################# Functions #################
