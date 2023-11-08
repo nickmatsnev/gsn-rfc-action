@@ -4,6 +4,8 @@ RUN apk add --no-cache bash
 
 COPY . .
 
-RUN find . -type f -name "*.sh" -exec chmod +x {} \;
+COPY entrypoint.sh /entrypoint.sh
+
+RUN chmod u+x ./**/*.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
