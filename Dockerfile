@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-alpine
+FROM kfp-components-docker-dev-local.artifactory.dhl.com/alpine:latest
 
 RUN apk add --no-cache bash
 
