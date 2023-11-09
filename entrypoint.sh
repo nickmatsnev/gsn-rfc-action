@@ -1,3 +1,3 @@
-#!/bin/bash
+#!/bin/sh -l
 
-sh -c "client/gha_client.sh $*"
+sh -c "/client/gha_client.sh $*"
