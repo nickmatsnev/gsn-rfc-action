@@ -22,8 +22,8 @@ jobs:
     uses: API-Developer-Portal/rfc_service@v2.0.5
     with:
       Email: 'name.surname@dhl.com'
-      AssignmentGroup: 'name.surname@dhl.com'
-      ApplicationName: 'name.surname@dhl.com'
+      AssignmentGroup: 'GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL'
+      ApplicationName: 'devportal'
       EscalatedBy: 'name.surname@dhl.com'
       ChangeCoordinator: 'name.surname@dhl.com'
       Description: 'Test RFC Creation'
