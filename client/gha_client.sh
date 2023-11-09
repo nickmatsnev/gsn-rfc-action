@@ -21,8 +21,8 @@ email_regex="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
 
 datetime_regex="^([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$"
 
-if [ "$#" -ne 6 ]; then
-    echo -e "${Yellow} Incorrect number of arguments. Usage: $0 [email] [description] [start_datetime] [end_datetime] [username] [password] $Color_Off"
+if [ "$#" -ne 10 ]; then
+    echo -e "${Yellow} Incorrect number of arguments. Usage: $0 [email] [assignment_group] [u_application_name] [u_escalated_by] [u_change_coordinator] [description] [start_datetime] [end_datetime] [username] [password] $Color_Off"
     echo -e "${Yellow} You have entered $# parameters $Color_Off"
     exit 1
 fi
@@ -32,13 +32,22 @@ if [[ ! "$1" =~ $email_regex ]]; then
     exit 1
 fi
 
-if ! [[ "$3" =~ $datetime_regex ]] || ! [[ "$4" =~ $datetime_regex ]]; then
+if [[ ! "$4" =~ $email_regex ]]; then
+    echo -e "${Yellow} The fourth argument must be a valid email address. $Color_Off"
+    exit 1
+fi
+
+if [[ ! "$5" =~ $email_regex ]]; then
+    echo -e "${Yellow} The fifth argument must be a valid email address. $Color_Off"
+    exit 1
+fi
+if ! [[ "$7" =~ $datetime_regex ]] || ! [[ "$8" =~ $datetime_regex ]]; then
     echo -e "${Yellow} The third and fourth arguments must be in datetime format (YYYY-MM-DD HH:MM:SS). $Color_Off"
     exit 1
 fi
 
-start_date_sec=$(date -u -d "$3" +%s)
-end_date_sec=$(date -u -d "$4" +%s)
+start_date_sec=$(date -u -d "$7" +%s)
+end_date_sec=$(date -u -d "$8" +%s)
 
 if [ "$start_date_sec" -ge "$end_date_sec" ]; then
     echo -e "${Yellow} The start date must be earlier than the end date. $Color_Off"
@@ -55,11 +64,18 @@ print_envelope_attributes "create"
 
 
 ################# Modifying ticket as it is set by user in GitHub Actions #################
-NEW_SHORT_DESCRIPTION=$1
-
 xml_data=$(cat "/envelops/uat/create.xml")
 
-xml_data=$(echo "$xml_data" | sed "s|<web:short_description>[^<]*</web:short_description>|<web:short_description>${NEW_SHORT_DESCRIPTION}</web:short_description>|g")
+xml_data=$(echo "$xml_data" | sed \
+    -e "s|<web:short_description>[^<]*</web:short_description>|<web:short_description>$6</web:short_description>|g" \
+    -e "s|<web:u_requested_by>[^<]*</web:u_requested_by>|<web:u_requested_by>$1</web:u_requested_by>|g" \
+    -e "s|<web:assignment_group>[^<]*</web:assignment_group>|<web:assignment_group>$2</web:assignment_group>|g" \
+    -e "s|<web:u_application_name>[^<]*</web:u_application_name>|<web:u_application_name>$3</web:u_application_name>|g" \
+    -e "s|<web:u_escalated_by>[^<]*</web:u_escalated_by>|<web:u_escalated_by>$4</web:u_escalated_by>|g" \
+    -e "s|<web:u_change_coordinator>[^<]*</web:u_change_coordinator>|<web:u_change_coordinator>$5</web:u_change_coordinator>|g" \
+    -e "s|<web:start_date>[^<]*</web:start_date>|<web:start_date>$7</web:start_date>|g" \
+    -e "s|<web:end_date>[^<]*</web:end_date>|<web:end_date>$8</web:end_date>|g" \
+    )
 
 echo "$xml_data"
 
@@ -67,7 +83,7 @@ echo "$xml_data" > "/envelops/uat/create.xml"
 ################# End of modifying ticket as it is set by user in GitHub Actions #################
 
 ################# Creating the RFC ticket #################
-bash "/services/create_rfc_ticket.sh" "$5" "$6"
+bash "/services/create_rfc_ticket.sh" "$9" "$10"
 
 print_response_envelope_attributes "create"
 
@@ -96,7 +112,7 @@ else
     echo "Failed to insert the number into the XML file."
 fi
 
-bash "/services/close_rfc_ticket.sh" "$5" "$6"
+bash "/services/close_rfc_ticket.sh" "$9" "$10"
 
 print_response_envelope_attributes "close"
 ################# End of updating to closure of the RFC script #################

@@ -22,6 +22,10 @@ jobs:
     uses: API-Developer-Portal/rfc_service@v2.0.5
     with:
       Email: 'name.surname@dhl.com'
+      AssignmentGroup: 'name.surname@dhl.com'
+      ApplicationName: 'name.surname@dhl.com'
+      EscalatedBy: 'name.surname@dhl.com'
+      ChangeCoordinator: 'name.surname@dhl.com'
       Description: 'Test RFC Creation'
       StartDate: '2023-11-08 12:00:00'
       EndDate: '2023-11-08 13:00:00'
