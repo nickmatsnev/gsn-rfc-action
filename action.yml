@@ -31,9 +31,9 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.Email }}
-    - ${{ inputs.Description }}
-    - ${{ inputs.StartDate }}
-    - ${{ inputs.EndDate }}
-    - ${{ inputs.Username }}
-    - ${{ inputs.Password }}
+    - '"${{ inputs.Email }}"'
+    - '"${{ inputs.Description }}"'
+    - '"${{ inputs.StartDate }}"'
+    - '"${{ inputs.EndDate }}"'
+    - '"${{ inputs.Username }}"'
+    - '"${{ inputs.Password }}"'
