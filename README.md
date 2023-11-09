@@ -63,3 +63,8 @@ Envelops are in ```envelops```.
 ## BPMN of approach when using the client dedicated for GHA
 
 ![Architecture](styles/rfcautomatedGHA.drawio.png)
+
+
+## Architecture of both approaches
+
+![Architecture](styles/structure.png)
