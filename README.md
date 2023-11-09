@@ -56,10 +56,10 @@ GHA client can be injected in pipeline.
 
 Envelops are in ```envelops```.
 
-## Architecture of approach when using the manual client
+## BPMN of approach when using the manual client
 
 ![Architecture](styles/rfcautomated.png)
 
-## Architecture of approach when using the client dedicated for GHA
+## BPMN of approach when using the client dedicated for GHA
 
 ![Architecture](styles/rfcautomatedGHA.drawio.png)
