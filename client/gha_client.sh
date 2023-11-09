@@ -3,17 +3,17 @@
 ### Program to manipulate RFC ticketing within Linux ###
 
 ################# Styles #################
-source "styles/colors.sh"
+source "/styles/colors.sh"
 ################# End of styles #################
 
 ################# Globals #################
-source "globals/globals.sh"
+source "/globals/globals.sh"
 ################# End of globals #################
 
 ################# Functions #################
-source "functions/print_envelope_attributes.sh"
-source "functions/print_response_envelope_attributes.sh"
-source "functions/save_output.sh"
+source "/functions/print_envelope_attributes.sh"
+source "/functions/print_response_envelope_attributes.sh"
+source "/functions/save_output.sh"
 ################# End of functions #################
 
 ################# Check if the arguments are set correctly #################
