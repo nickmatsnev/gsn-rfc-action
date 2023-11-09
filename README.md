@@ -19,7 +19,7 @@ on:
 jobs:
   test:
     name: Build And Push Image into GCR Dev
-    uses: API-Developer-Portal/rfc_service@v1
+    uses: API-Developer-Portal/rfc_service@v2.0.5
     with:
       Email: 'name.surname@dhl.com'
       Description: 'Test RFC Creation'
