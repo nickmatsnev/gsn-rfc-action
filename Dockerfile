@@ -1,4 +1,4 @@
-FROM docker-dhl-local.artifactory.dhl.com/ubuntu:18.04
+FROM docker.artifactory.dhl.com/node:18-alpine
 
 RUN apk add --no-cache bash
 
