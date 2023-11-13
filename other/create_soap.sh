@@ -3,15 +3,15 @@
 NS="http://webservice.gsn.com"
 SOAP_BODY="<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:web=\"$NS\">"
 
-SOAP_BODY="$SOAP_BODY<web:gsnAssignedGroup>GROUP API Developer Portal</web:gsnAssignedGroup>"
-SOAP_BODY="$SOAP_BODY<web:gsnServiceHostname>https://servicenow.dhl.com</web:gsnServiceHostname>"
-SOAP_BODY="$SOAP_BODY<web:gsnServiceCredentials>gsn_prod</web:gsnServiceCredentials>"
-SOAP_BODY="$SOAP_BODY<web:gsnChangeReqCloseCode>implemented</web:gsnChangeReqCloseCode>"
-SOAP_BODY="$SOAP_BODY<web:gsnChangeReqCloseFailedCode>failed </web:gsnChangeReqCloseFailedCode > "
-SOAP_BODY="$SOAP_BODY<web:gsnChangeReqProcessPolicy>authorized</web:gsnChangeReqProcessPolicy  >"
-SOAP_BODY="$SOAP_BODY<web:gsnChangeReqState>110</web:gsnChangeReqState>"
-SOAP_BODY="$SOAP_BODY<web:gsnFailureChangeCauseByDefault>other</w eb:g snFailure ChangeCauseBy Default>"
-SOAP_BODY="$SOAP_BODY<web:gsnFailureCodeDefault>Not impacting business – failed to install correctly</web:gsnFailureCodeDefault>"
+SOAP_BODY="$SOAP_BODY<gsnAssignedGroup>GROUP API Developer Portal</gsnAssignedGroup>"
+SOAP_BODY="$SOAP_BODY<gsnServiceHostname>https://servicenow.dhl.com</gsnServiceHostname>"
+SOAP_BODY="$SOAP_BODY<gsnServiceCredentials>gsn_prod</gsnServiceCredentials>"
+SOAP_BODY="$SOAP_BODY<gsnChangeReqCloseCode>implemented</gsnChangeReqCloseCode>"
+SOAP_BODY="$SOAP_BODY<gsnChangeReqCloseFailedCode>failed </gsnChangeReqCloseFailedCode > "
+SOAP_BODY="$SOAP_BODY<gsnChangeReqProcessPolicy>authorized</gsnChangeReqProcessPolicy  >"
+SOAP_BODY="$SOAP_BODY<gsnChangeReqState>110</gsnChangeReqState>"
+SOAP_BODY="$SOAP_BODY<gsnFailureChangeCauseByDefault>other</w eb:g snFailure ChangeCauseBy Default>"
+SOAP_BODY="$SOAP_BODY<gsnFailureCodeDefault>Not impacting business – failed to install correctly</gsnFailureCodeDefault>"
 
 DEFAULT_PIR_TEXT="$(cat <<EOF
 1) Did the implementation go as planned, with the change solving the problem and providing the benefit expected?

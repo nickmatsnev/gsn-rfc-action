@@ -10,8 +10,8 @@ function print_envelope_attributes() {
         exit 1
     fi
 
-    grep -oP '<web:\K[^>]+(?=>[^<]+<\/web:[^>]+>)' "$input_xml" | while read -r tag; do
-        value=$(grep -oP "(?<=<web:$tag>)[^<]+" "$input_xml")
+    grep -oP '<\K[^>]+(?=>[^<]+<\/[^>]+>)' "$input_xml" | while read -r tag; do
+        value=$(grep -oP "(?<=<$tag>)[^<]+" "$input_xml")
         echo -e "$Blue $tag:$value $Color_Off"
     done
 

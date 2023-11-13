@@ -67,14 +67,14 @@ print_envelope_attributes "create"
 xml_data=$(cat "/envelops/uat/create.xml")
 
 xml_data=$(echo "$xml_data" | sed \
-    -e "s|<web:short_description>[^<]*</web:short_description>|<web:short_description>$6</web:short_description>|g" \
-    -e "s|<web:u_requested_by>[^<]*</web:u_requested_by>|<web:u_requested_by>$1</web:u_requested_by>|g" \
-    -e "s|<web:assignment_group>[^<]*</web:assignment_group>|<web:assignment_group>$2</web:assignment_group>|g" \
-    -e "s|<web:u_application_name>[^<]*</web:u_application_name>|<web:u_application_name>$3</web:u_application_name>|g" \
-    -e "s|<web:u_escalated_by>[^<]*</web:u_escalated_by>|<web:u_escalated_by>$4</web:u_escalated_by>|g" \
-    -e "s|<web:u_change_coordinator>[^<]*</web:u_change_coordinator>|<web:u_change_coordinator>$5</web:u_change_coordinator>|g" \
-    -e "s|<web:start_date>[^<]*</web:start_date>|<web:start_date>$7</web:start_date>|g" \
-    -e "s|<web:end_date>[^<]*</web:end_date>|<web:end_date>$8</web:end_date>|g" \
+    -e "s|<short_description>[^<]*</short_description>|<short_description>$6</short_description>|g" \
+    -e "s|<u_requested_by>[^<]*</u_requested_by>|<u_requested_by>$1</u_requested_by>|g" \
+    -e "s|<assignment_group>[^<]*</assignment_group>|<assignment_group>$2</assignment_group>|g" \
+    -e "s|<u_application_name>[^<]*</u_application_name>|<u_application_name>$3</u_application_name>|g" \
+    -e "s|<u_escalated_by>[^<]*</u_escalated_by>|<u_escalated_by>$4</u_escalated_by>|g" \
+    -e "s|<u_change_coordinator>[^<]*</u_change_coordinator>|<u_change_coordinator>$5</u_change_coordinator>|g" \
+    -e "s|<start_date>[^<]*</start_date>|<start_date>$7</start_date>|g" \
+    -e "s|<end_date>[^<]*</end_date>|<end_date>$8</end_date>|g" \
     )
 
 echo "$xml_data"
