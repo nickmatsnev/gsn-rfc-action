@@ -1,6 +1,6 @@
-FROM docker.artifactory.dhl.com/node:18-alpine
+FROM kfp-components-docker-dev-local.artifactory.dhl.com/alpine:latest
 
-RUN apk add --no-cache bash
+RUN apk add --no-cache bash pcre
 
 COPY . .
 
