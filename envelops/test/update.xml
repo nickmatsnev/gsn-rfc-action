@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:web="https://servicenow-test.dhl.com/cchm_change_request_update.do?SOAP"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ ">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <web:Create>
+            <web:description>
+                1)  Did the implementation go as planned, with the change solving the problem and providing the benefit expected?
+                Yes.
+                2)  Were there any unforeseen difficulties during the implementation? If yes, what happened and what is the back out steps taken?
+                No.
+                3)  Did you meet the scheduled window? If no, how long did the window exceed? Were there any additional downtime?
+                No downtime.
+                4)  If the implementation failed (please refer to Special Instruction column as well);
+                a.  If it caused any INC, please provide the INC ticket number
+                b.  Explain why it happened i.e. the root cause
+                c.  Share the lesson learnt
+                d.  Provide steps to be taken to improve the process to ensure it does not happen again
+                e.  Provide non-technical explanation of your recovery steps
+                5)  User / Customer satisfaction;
+                a.  Did the implementation meet the user's requirement?
+                n/a
+                b.  Was the customer satisfied with the implementation?
+                n/a
+                c.  Please rate the user/customer satisfaction from 1 to 5 (1 being lowest and 5 Highest)
+                n/a
+                6)  Did we use the most cost-effective manner in the process?
+                n/a
+                7)  Any other lesson learnt?
+                No</web:description>
+            <web:short_description>This is tested update RFC</web:short_description>
+            <web:change_request>RFC0123456</web:change_request>
+            <web:u_requested_by>nikita.matsnev@dhl.com</web:u_requested_by>
+            <web:assigned_to>nikita.matsnev@dhl.com</web:assigned_to>
+            <web:u_change_coordinator>ondrej.sztacho@dhl.com</web:u_change_coordinator>
+            <web:priority>4</web:priority>
+            <web:assignment_group>GROUP API Developer Portal</web:assignment_group>
+            <web:category>Release</web:category>
+            <web:start_date>2023-10-10 12:00:00</web:start_date>
+            <web:end_date>2023-10-10 13:00:00</web:end_date>
+            <web:u_application_name>devportal</web:u_application_name>
+            <web:u_application_type>Internally Developed Application</web:u_application_type>
+            <web:u_maintenance_window>Inside</web:u_maintenance_window>
+            <web:reason>life_cycle_service_change</web:reason>
+            <web:u_justification>We deploy new version of GAPI DevPortal</web:u_justification>
+            <web:cmdb_ci>ITS DEVELOPER PORTAL</web:cmdb_ci>
+            <web:u_impacted_environment>New Hardware</web:u_impacted_environment>
+            <web:u_customer_rtp_date>2023-10-02 10:00:00</web:u_customer_rtp_date>
+        </web:Create>
+    </soapenv:Body>
+</soapenv:Envelope>

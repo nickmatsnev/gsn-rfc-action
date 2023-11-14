@@ -1,0 +1,9 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cchm="https://servicenow.dhl.com/ns/cchm_change_request_read/">
+<soapenv:Header/>
+<soapenv:Body>
+<cchm:read>
+<template></template>
+<change_request>RFC2331229</change_request>
+</cchm:read>
+</soapenv:Body>
+</soapenv:Envelope>
