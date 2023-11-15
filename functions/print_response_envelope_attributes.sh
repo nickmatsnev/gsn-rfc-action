@@ -2,10 +2,11 @@
 
 function print_response_envelope_attributes() {
     local ACTION=$1
-
+    local ENV=$2
+    
     echo -e "\n\n $Blue Response body: $Color_Off"
-    cat "/responses/uat/${ACTION}_response.xml" | grep -E "<[a-z]+>"
-    input_xml="/responses/uat/${ACTION}_response.xml"
+    cat "/responses/${ENV}/${ACTION}_response.xml" | grep -E "<[a-z]+>"
+    input_xml="/responses/${ENV}/${ACTION}_response.xml"
     if [[ ! -f "$input_xml" ]]; then
         echo -e "$Red Envelope $input_xml does not exist! $Color_Off"
         exit 1

@@ -7,9 +7,16 @@ fi
 
 USERNAME=$1
 PASSWORD=$2
+ENV=$3
 
-curl -X POST "https://soap.servicenow-uat.dhl.com/cchm_change_request_create.do?SOAP" \
+case $3 in
+    uat|UAT|Uat) URL="https://soap.servicenow-uat.dhl.com/cchm_change_request_update.do?SOAP" ;;
+    prod|PROD|Prod) URL="https://soap.servicenow.dhl.com/cchm_change_request_update.do?SOAP" ;;
+    *) echo -e "$Red Invalid env, we only support [uat|prod] $Color_Off"; exit 1 ;;
+esac
+
+curl -X POST "$URL" \
     --user "$USERNAME:$PASSWORD" \
     -H "Content-Type: text/xml; charset=utf-8" \
-    --data-binary "/envelops/uat/create.xml" \
-    > "/responses/uat/create_response.xml"
+    --data-binary "/envelops/${ENV}/create.xml" \
+    > "/responses/${ENV}/create_response.xml"

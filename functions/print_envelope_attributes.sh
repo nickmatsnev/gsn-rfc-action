@@ -2,9 +2,11 @@
 
 function print_envelope_attributes() {
     local ACTION=$1
+    local ENV=$2
+    
     echo -e "$Blue Envelope attributes: $Color_Off"
-    cat "/envelops/uat/${ACTION}.xml" | grep -E "<[a-z]+>"
-    input_xml="/envelops/uat/${ACTION}.xml"
+    cat "/envelops/${ENV}/${ACTION}.xml" | grep -E "<[a-z]+>"
+    input_xml="/envelops/${ENV}/${ACTION}.xml"
     if [[ ! -f "$input_xml" ]]; then
         echo -e "$Red Envelope $input_xml does not exist! $Color_Off"
         exit 1
