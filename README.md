@@ -31,6 +31,7 @@ jobs:
       EndDate: '2023-11-08 13:00:00'
       Username: 'username1'
       Password: 'password1'
+      Environment: 'uat'
 ```
 
 ### 2.2. Manual usage
