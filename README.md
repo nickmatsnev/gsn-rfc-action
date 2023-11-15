@@ -44,12 +44,12 @@ You can use client.sh like this:
 ./client.sh close RFC1234567 "username" "password"
 ```
 
-| Command | Alias | Description | Example                                                       |
-|---------|-------|-------------|---------------------------------------------------------------|
-| create  | cr    | create RFC  | ```cr "description" "username" "password"``` or just ```cr``` |
-| update  | u     | update RFC  | ```u RFC1234567 "username" "password"```                      |
-| close   | cl    | close  RFC  | ```cl RFC1234567 "username" "password"```                     |
-| read    | r     | read   RFC  | ```r  RFC1234567 "username" "password"```                     |
+| Command | Alias | Description | Example                                                             |
+|---------|-------|-------------|---------------------------------------------------------------------|
+| create  | cr    | create RFC  | ```cr "description" "username" "password" "env"``` or just ```cr``` |
+| update  | u     | update RFC  | ```u RFC1234567 "username" "password" "env"```                      |
+| close   | cl    | close  RFC  | ```cl RFC1234567 "username" "password" "env"```                     |
+| read    | r     | read   RFC  | ```r  RFC1234567 "username" "password" "env"```                     |
 
 ## 3. Developer Guide
 
