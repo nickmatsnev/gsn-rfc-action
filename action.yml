@@ -39,6 +39,10 @@ inputs:
   Password:
     required: true
     type: string
+  Environment:
+    required: true
+    type: string
+
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -53,3 +57,4 @@ runs:
     - '"${{ inputs.EndDate }}"'
     - '"${{ inputs.Username }}"'
     - '"${{ inputs.Password }}"'
+    - '"${{ inputs.Environment }}"'
