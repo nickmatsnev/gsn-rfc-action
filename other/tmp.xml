@@ -5,8 +5,8 @@
                   xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ ">
     <soapenv:Header/>
     <soapenv:Body>
-        <web:Create>
-            <web:number>This is tested creation RFC</web:number>
-        </web:Create>
+        <Create>
+            <number>This is tested creation RFC</number>
+        </Create>
     </soapenv:Body>
 </soapenv:Envelope>

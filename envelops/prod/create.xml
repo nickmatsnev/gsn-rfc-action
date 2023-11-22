@@ -4,17 +4,17 @@
                   xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ ">
     <soapenv:Header/>
     <soapenv:Body>
-        <web:Create>
-            <web:short_description>This is tested creation RFC</web:short_description>
-            <web:u_requested_by>nikita.matsnev@dhl.com</web:u_requested_by>
-            <web:u_change_coordinator>ondrej.sztacho@dhl.com</web:u_change_coordinator>
-            <web:priority>4</web:priority>
-            <web:assignment_group>GROUP API Developer Portal</web:assignment_group>
-            <web:category>Release</web:category>
-            <web:start_date>2023-10-10 12:00:00</web:start_date>
-            <web:end_date>2023-10-10 13:00:00</web:end_date>
-            <web:u_application_name>devportal</web:u_application_name>
-            <web:u_application_type>Internally Developed Application</web:u_application_type>
-        </web:Create>
+        <Create>
+            <short_description>This is tested creation RFC</short_description>
+            <u_requested_by>nikita.matsnev@dhl.com</u_requested_by>
+            <u_change_coordinator>ondrej.sztacho@dhl.com</u_change_coordinator>
+            <priority>4</priority>
+            <assignment_group>GROUP API Developer Portal</assignment_group>
+            <category>Release</category>
+            <start_date>2023-10-10 12:00:00</start_date>
+            <end_date>2023-10-10 13:00:00</end_date>
+            <u_application_name>devportal</u_application_name>
+            <u_application_type>Internally Developed Application</u_application_type>
+        </Create>
     </soapenv:Body>
 </soapenv:Envelope>
