@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ "$#" -ne 2 ]; then
-    echo "Usage: $0 <USERNAME> <PASSWORD>"
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 <USERNAME> <PASSWORD> <ENVIRONMENT>"
     exit 1
 fi
 

@@ -3,8 +3,8 @@
 <soapenv:Body>
 <cchm:update>
 <template></template>
-<short_description>This is updated description RFC</short_description>
-<change_request>RFC2331229</change_request>
+<change_request>RFC0000000</change_request>
+<state>Registered</state>
 </cchm:update>
 </soapenv:Body>
 </soapenv:Envelope>
