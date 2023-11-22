@@ -3,7 +3,7 @@
 <soapenv:Body>
 <cchm:insert>
 <template></template>
-<short_description>This is tested creation RFC</short_description>
+<short_description>descr</short_description>
 <u_requested_by>nikita.matsnev@dhl.com</u_requested_by>
 <assignment_group>GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL</assignment_group>
 <u_change_coordinator>ondrej.sztacho@dhl.com</u_change_coordinator>
