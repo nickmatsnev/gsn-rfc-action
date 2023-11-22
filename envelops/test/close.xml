@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:web="https://servicenow-test.dhl.com/cchm_change_request_update.do?SOAP"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ ">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <web:Create>
+            <web:change_request>RFC0123456</web:change_request>
+        </web:Create>
+    </soapenv:Body>
+</soapenv:Envelope>

@@ -1,0 +1,60 @@
+name: 'Use RFC Service'
+author: 'Nikita Matsnev'
+description: 'Create and close fast RFC in GHA'
+
+branding:
+  icon: 'file'
+  color: 'yellow'
+
+inputs:
+  Email:
+    description: 'Your e-mail'
+    required: true
+  AssignmentGroup:
+    description: 'e.g. GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL'
+    required: true
+  ApplicationName:
+    description: 'e.g. devportal'
+    required: true
+  EscalatedBy:
+    description: 'e.g. name.surname@dhl.com'
+    required: true
+  ChangeCoordinator:
+    description: 'e.g. name.surname@dhl.com'
+    required: true
+  Description:
+    description: 'Description'
+    required: true
+  StartDate:
+    required: true
+    type: datetime
+    description: 'e.g. 2023-11-13 12:00:00'
+  EndDate:
+    required: true
+    type: string
+    description: 'e.g. 2023-11-13 13:00:00'
+  Username:
+    required: true
+    type: string
+  Password:
+    required: true
+    type: string
+  Environment:
+    required: true
+    type: string
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - '"${{ inputs.Email }}"'
+    - '"${{ inputs.AssignmentGroup }}"'
+    - '"${{ inputs.ApplicationName }}"'
+    - '"${{ inputs.EscalatedBy }}"'
+    - '"${{ inputs.ChangeCoordinator }}"'
+    - '"${{ inputs.Description }}"'
+    - '"${{ inputs.StartDate }}"'
+    - '"${{ inputs.EndDate }}"'
+    - '"${{ inputs.Username }}"'
+    - '"${{ inputs.Password }}"'
+    - '"${{ inputs.Environment }}"'
