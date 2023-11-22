@@ -173,11 +173,13 @@ fi
 
 update_xml_data "${environment}" "${TICKET_NUMBER}" "Registered" "${username}" "${password}"
 
-update_xml_data "${environment}" "${TICKET_NUMBER}" "Approved For Implementation" "${username}" "${password}"
+# response_message:ERROR: State can be only one of Draft (10) or Registered (20) 
 
-update_xml_data "${environment}" "${TICKET_NUMBER}" "Review" "${username}" "${password}"
+# update_xml_data "${environment}" "${TICKET_NUMBER}" "Approved For Implementation" "${username}" "${password}"
 
-update_xml_data "${environment}" "${TICKET_NUMBER}" "Closed" "${username}" "${password}"
+# update_xml_data "${environment}" "${TICKET_NUMBER}" "Review" "${username}" "${password}"
+
+# update_xml_data "${environment}" "${TICKET_NUMBER}" "Closed" "${username}" "${password}"
 
 ################# End of updating to closure of the RFC script #################
 
