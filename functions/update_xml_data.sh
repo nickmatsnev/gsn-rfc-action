@@ -9,12 +9,12 @@ update_xml_data() {
     local username=$4
     local password=$5
 
-    local xml_data=$(cat "/envelops/${environment}/update.xml")
+    local xml_data=$(cat "/envelops/${environment}/rfc/update.xml")
 
     xml_data=$(echo "$xml_data" | sed "s|<change_request>[^<]*</change_request>|<change_request>${ticket_number}</change_request>|g")
     xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>${state_value}</state>|g")
 
-    echo "$xml_data" > "/envelops/${environment}/update.xml"
+    echo "$xml_data" > "/envelops/${environment}/rfc/update.xml"
 
     if [ $? -eq 0 ]; then
         echo "The number was successfully inserted into the XML file."

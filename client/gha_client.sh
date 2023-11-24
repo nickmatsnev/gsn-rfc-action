@@ -107,7 +107,7 @@ print_envelope_attributes "create" "$environment"
 
 # 4. Create the approver into the group approval which had been created in “Not Yet Requested” state. When the approver is created by referencing to a specific group approval and RFC; number of fields will be inherited from the group approval level.
 
-xml_data=$(cat "/envelops/${environment}/create.xml")
+xml_data=$(cat "/envelops/${environment}/rfc/create.xml")
 
 xml_data=$(echo "$xml_data" | sed \
     -e "s|<short_description>[^<]*</short_description>|<short_description>$6</short_description>|g" \
@@ -124,7 +124,7 @@ xml_data=$(echo "$xml_data" | sed \
 
 echo "$xml_data"
 
-echo "$xml_data" > "/envelops/${environment}/create.xml"
+echo "$xml_data" > "/envelops/${environment}/rfc/create.xml"
 ################# End of modifying ticket for creation as it is set by user in GitHub Actions #################
 
 ################# Creating the RFC ticket #################

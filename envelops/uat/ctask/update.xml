@@ -1,0 +1,12 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cchm="https://servicenow.dhl.com/ns/cchm_change_task_create/">
+<soapenv:Header/>
+<soapenv:Body>
+<cchm:insert>
+<template></template>
+<change_request></change_request>
+<change_task></change_task>
+<u_close_code>Implemented</u_close_code>
+<state>110</state>
+</cchm:insert>
+</soapenv:Body>
+</soapenv:Envelope>

@@ -18,5 +18,5 @@ esac
 curl -X POST "$URL" \
     --user "$USERNAME:$PASSWORD" \
     -H "Content-Type: text/xml; charset=utf-8" \
-    --data-binary "@envelops/${ENV}/groupapprove/create.xml" \
-    > "responses/${ENV}/groupapprove/create_response.xml"
+    --data-binary "@/envelops/${ENV}/groupapprove/create.xml" \
+    > "/responses/${ENV}/groupapprove/create_response.xml"

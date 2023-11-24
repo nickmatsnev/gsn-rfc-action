@@ -18,5 +18,5 @@ esac
 curl -X POST "$URL" \
     --user "$USERNAME:$PASSWORD" \
     -H "Content-Type: text/xml; charset=utf-8" \
-    --data-binary "envelops/${ENV}/update.xml" \
-    > "responses/${ENV}/update_response.xml"
+    --data-binary "@/envelops/${ENV}/rfc/update.xml" \
+    > "/responses/${ENV}/rfc/update_response.xml"
