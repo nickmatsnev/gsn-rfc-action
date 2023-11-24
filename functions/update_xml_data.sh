@@ -22,7 +22,7 @@ update_xml_data() {
         echo "Failed to insert the number into the XML file."
     fi
 
-    bash "/services/update_rfc_ticket.sh" "$username" "$password" "${environment}"
+    bash "/services/rfc/update_rfc_ticket.sh" "$username" "$password" "${environment}"
 
     print_response_envelope_attributes "update" "${environment}"
 }

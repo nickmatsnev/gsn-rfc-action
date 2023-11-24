@@ -128,7 +128,7 @@ echo "$xml_data" > "/envelops/${environment}/create.xml"
 ################# End of modifying ticket for creation as it is set by user in GitHub Actions #################
 
 ################# Creating the RFC ticket #################
-bash "/services/create_rfc_ticket.sh" "${username}" "${password}" "${environment}"
+bash "/services/rfc/create_rfc_ticket.sh" "${username}" "${password}" "${environment}"
 
 print_response_envelope_attributes "create" "${environment}"
 

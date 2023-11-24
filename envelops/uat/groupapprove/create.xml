@@ -1,0 +1,14 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cchm="https://servicenow.dhl.com/ns/cchm_sysapproval_group_create/">
+<soapenv:Header/>
+<soapenv:Body>
+<cchm:insert>
+<template></template>
+<change_request>RFC2332335</change_request>
+<u_approval_type>Approval for Implementation</u_approval_type>
+<assignment_group>CAB-BIMODAL</assignment_group>
+<wait_for>any</wait_for>
+<reject_handling>reject</u_change_coordinator>
+<u_sla_category>2d</priority>
+</cchm:insert>
+</soapenv:Body>
+</soapenv:Envelope>
