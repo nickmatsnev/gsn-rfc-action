@@ -118,6 +118,7 @@ fi
 
 xml_data=$(cat "/envelops/${environment}/ctask/create.xml")
 
+xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<short_description>[^<]*</short_description>|<short_description>build_and_test task for automated RFC</short_description>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_task_type>[^<]*</u_task_type>|<u_task_type>uat</u_task_type>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_change_stage>[^<]*</u_change_stage>|<u_change_stage>build_and_test</u_change_stage>|g")
@@ -125,8 +126,6 @@ xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_sta
 xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${end_date_sec}</work_end>|g")
 echo "TESTING HERE"
 echo "$xml_data" > "/envelops/${environment}/ctask/create.xml"
-
-print_envelope_attributes "ctask" "create" "$environment"
 
 bash "/services/ctask/create_ctask.sh" "${username}" "${password}" "${environment}"
 
@@ -142,6 +141,7 @@ UAT_CTASK_NUMBER=$(sed -n 's|.*<number>\(.*\)</number>.*|\1|p' /responses/${envi
 
 xml_data=$(cat "/envelops/${environment}/ctask/create.xml")
 
+xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<short_description>[^<]*</short_description>|<short_description>implementation task for automated RFC</short_description>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_task_type>[^<]*</u_task_type>|<u_task_type>implementation</u_task_type>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_change_stage>[^<]*</u_change_stage>|<u_change_stage>implementation</u_change_stage>|g")
@@ -149,7 +149,6 @@ xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_sta
 xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${end_date_sec}</work_end>|g")
 
 echo "$xml_data" > "/envelops/${environment}/ctask/create.xml"
-print_envelope_attributes "ctask" "create" "$environment"
 
 bash "/services/ctask/create_ctask.sh" "${username}" "${password}" "${environment}"
 
@@ -192,14 +191,60 @@ bash "/services/approver/create_approver.sh" "${username}" "${password}" "${envi
 print_response_envelope_attributes "approver" "create" "${environment}"
 ################# End of create approver #################
 
+################# Update UAT CTask #################
 
-################# Update RFC #################
+xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
+
+xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${UAT_CTASK_NUMBER}</change_task>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code>Implemented</u_close_code>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes>UAT successfully tested and passed</close_notes>|g")
+
+
+echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
+print_envelope_attributes "ctask" "update" "$environment"
+
+
+bash "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
+
+print_response_envelope_attributes "ctask" "update" "${environment}"
+################# end of Update UAT CTask #################
+
+
+################# Update Implementation CTask #################
+xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
+
+xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${IMPL_CTASK_NUMBER}</change_task>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code>Implemented</u_close_code>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes>Change successfully implemented</close_notes>|g")
+
+
+echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
+print_envelope_attributes "ctask" "update" "$environment"
+
+
+bash "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
+
+print_response_envelope_attributes "ctask" "update" "${environment}"
+################# End of update Implementation CTask #################
+
+
+################# Updating to registered of the RFC ticket #################   
 # update_xml_data "${environment}" "${TICKET_NUMBER}" "Registered" "${username}" "${password}"
-################# End of update RFC #################
+################# End of updating to registered of the RFC script #################
 
 
 ################# Updating to closure of the RFC ticket #################   
-update_xml_data "${environment}" "${TICKET_NUMBER}" "Tested" "${username}" "${password}"
+xml_data=$(cat "/envelops/${environment}/rfc/close.xml")
+
+xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
+
+echo "$xml_data" > "/envelops/${environment}/rfc/close.xml"
+
+bash  "/services/rfc/close_rfc_ticket.sh" "${username}" "${password}" "${environment}"
+
+print_response_envelope_attributes "rfc" "close" "${environment}"
 ################# End of updating to closure of the RFC script #################
 
 

@@ -5,6 +5,25 @@
 <template></template>
 <change_request>RFC0000000</change_request>
 <state>Registered</state>
+<u_regions>ASIA</u_regions>
+<u_maintenance_window>Inside</u_maintenance_window>
+<u_impacted_service>GROUP API DEVELOPER PORTAL</u_impacted_service>
+<u_impacted_business_unit>ITS</u_impacted_business_unit>
+<u_change_tested>Yes</u_change_tested>
+<u_implementation_risk>Test text</u_implementation_risk>
+<u_skip_risk>Skip text</u_skip_risk>
+<u_known_impact>Sth not happened</u_known_impact>
+<u_backout_planned>Yes</u_backout_planned>
+<u_backout_authority>igor.nemykin@dhl.com</u_backout_authority>
+<u_backout_groups>GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL</u_backout_groups>
+<u_trigger_for_backout>not deployed</u_trigger_for_backout>
+<u_duration_of_backout>1min</u_duration_of_backout>
+<backout_plan>eee</backout_plan>
+<u_security_classification>For Internal Use</u_security_classification>
+<u_security_regulation>No</u_security_regulation>
+<u_build_run_activity>BUILD</u_build_run_activity>
+<u_country_notified>Yes</u_country_notified>
+<cmdb_ci>PRG-SOBA-DEVELOPER-PORTAL-APP</cmdb_ci>
 </cchm:update>
 </soapenv:Body>
 </soapenv:Envelope>
