@@ -3,11 +3,13 @@
 <soapenv:Body>
 <cchm:insert>
 <template></template>
-<change_request></change_request>
+<change_request> </change_request>
 <short_description>CTask description</short_description>
-<assignment_group></assignment_group>
-<u_change_stage></u_change_stage>
-<u_task_type></u_task_type>
+<assignment_group> </assignment_group>
+<u_change_stage> </u_change_stage>
+<u_task_type> </u_task_type>
+<work_start> </work_start>
+<work_end> </work_end>
 </cchm:insert>
 </soapenv:Body>
 </soapenv:Envelope>

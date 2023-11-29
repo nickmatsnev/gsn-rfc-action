@@ -3,8 +3,8 @@
 <soapenv:Body>
 <cchm:insert>
 <template></template>
-<change_request>RFC2332335</change_request>
-<sysapproval_group></sysapproval_group>
+<change_request> </change_request>
+<sysapproval_group> </sysapproval_group>
 <approver>nikita.matsnev@dhl.com</approver>
 </cchm:insert>
 </soapenv:Body>

@@ -62,7 +62,7 @@ fi
 
 
 ################# Printing the envelope attributes #################
-print_envelope_attributes "$action" "$env"
+print_envelope_attributes "rfc" "$action" "$env"
 ################# End of printing the envelope attributes #################
 
 

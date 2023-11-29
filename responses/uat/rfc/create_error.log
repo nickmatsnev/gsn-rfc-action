@@ -1,0 +1,103 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Could not resolve host: POST
+* Closing connection 0
+curl: (6) Could not resolve host: POST
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 165.72.196.36:443...
+* Connected to soap.servicenow-uat.dhl.com (165.72.196.36) port 443 (#1)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+*  CAfile: /etc/ssl/certs/ca-certificates.crt
+*  CApath: /etc/ssl/certs
+* TLSv1.0 (OUT), TLS header, Certificate Status (22):
+} [5 bytes data]
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+} [512 bytes data]
+* TLSv1.2 (IN), TLS header, Certificate Status (22):
+{ [5 bytes data]
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+{ [91 bytes data]
+* TLSv1.2 (IN), TLS header, Certificate Status (22):
+{ [5 bytes data]
+* TLSv1.2 (IN), TLS handshake, Certificate (11):
+{ [2908 bytes data]
+* TLSv1.2 (IN), TLS header, Certificate Status (22):
+{ [5 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server key exchange (12):
+{ [333 bytes data]
+* TLSv1.2 (IN), TLS header, Certificate Status (22):
+{ [5 bytes data]
+* TLSv1.2 (IN), TLS handshake, Server finished (14):
+{ [4 bytes data]
+* TLSv1.2 (OUT), TLS header, Certificate Status (22):
+} [5 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Client key exchange (16):
+} [70 bytes data]
+* TLSv1.2 (OUT), TLS header, Finished (20):
+} [5 bytes data]
+* TLSv1.2 (OUT), TLS change cipher, Change cipher spec (1):
+} [1 bytes data]
+* TLSv1.2 (OUT), TLS header, Certificate Status (22):
+} [5 bytes data]
+* TLSv1.2 (OUT), TLS handshake, Finished (20):
+} [16 bytes data]
+* TLSv1.2 (IN), TLS header, Finished (20):
+{ [5 bytes data]
+* TLSv1.2 (IN), TLS header, Certificate Status (22):
+{ [5 bytes data]
+* TLSv1.2 (IN), TLS handshake, Finished (20):
+{ [16 bytes data]
+* SSL connection using TLSv1.2 / ECDHE-RSA-AES256-GCM-SHA384
+* ALPN, server did not agree to a protocol
+* Server certificate:
+*  subject: C=DE; ST=Nordrhein-Westfalen; L=Bonn; O=Deutsche Post AG; CN=servicenow.dhl.com
+*  start date: Aug 28 07:52:19 2023 GMT
+*  expire date: Aug 27 07:51:19 2024 GMT
+*  subjectAltName: host "soap.servicenow-uat.dhl.com" matched cert's "soap.servicenow-uat.dhl.com"
+*  issuer: C=DE; O=Deutsche Post AG; CN=DPDHL Global TLS CA - I5
+*  SSL certificate verify ok.
+* Server auth using Basic with user 'snc_sys_if_gapi'
+* TLSv1.2 (OUT), TLS header, Supplemental data (23):
+} [5 bytes data]
+> POST /cchm_change_request_update.do?SOAP HTTP/1.1
+> Host: soap.servicenow-uat.dhl.com
+> Authorization: Basic c25jX3N5c19pZl9nYXBpOkZWSmFrMiFiaWtmYUZBSGF3cGoyJWU=
+> User-Agent: curl/7.81.0
+> Accept: */*
+> Content-Type: text/xml; charset=utf-8
+> Content-Length: 29
+> 
+} [29 bytes data]
+100    29    0     0  100    29      0    118 --:--:-- --:--:-- --:--:--   118* TLSv1.2 (IN), TLS header, Supplemental data (23):
+{ [5 bytes data]
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 500 Internal Server Error
+< Server-Timing: sem_wait;dur=0, sesh_wait;dur=0
+< X-Is-Logged-In: true
+< X-Transaction-ID: a4971bddae49
+< Pragma: no-store,no-cache
+< Cache-Control: no-cache,no-store,must-revalidate,max-age=-1
+< Expires: 0
+< X-TRANSACTION-TIME-MS: 25
+< X-TRANSACTION-TIME: 0:00:00.025
+< Content-Type: text/xml;charset=UTF-8
+< Transfer-Encoding: chunked
+< Date: Tue, 28 Nov 2023 14:03:26 GMT
+< X-Cnection: close
+< Server: ServiceNow
+< Set-Cookie: JSESSIONID=B8B27E94AEDDAB72B275A80F4D7D80FA; Path=/; HttpOnly; SameSite=None; Secure
+< Set-Cookie: glide_user=; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/; HttpOnly; SameSite=None; Secure
+< Set-Cookie: glide_user_session=; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/; HttpOnly; SameSite=None; Secure
+< Set-Cookie: glide_user_route=glide.d271d0c2f0173bfd9779013707b9d85e; Max-Age=2147483647; Expires=Sun, 16-Dec-2091 17:17:33 GMT; Path=/; HttpOnly; SameSite=None; Secure
+< Set-Cookie: glide_session_store=60971BDD473679508014650F436D43AE; Max-Age=1800; Expires=Tue, 28-Nov-2023 14:33:26 GMT; Path=/; HttpOnly; SameSite=None; Secure
+< Set-Cookie: ENXCRXYPXT=!dEHU+GHgFe4vwuD83+Z5gcYM2m4wq3fKDn+ITAJKfZAILSyinrVXTqvKdaX5WmcJfH475VlRK89t5Bo=; path=/; Httponly; Secure; SameSite=None; Secure
+< Strict-Transport-Security: max-age=63072000; includeSubDomains
+< Vary: Accept-Encoding
+< 
+{ [327 bytes data]
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+{ [5 bytes data]
+100   349    0   320  100    29   1207    109 --:--:-- --:--:-- --:--:--  1316
+* Connection #1 to host soap.servicenow-uat.dhl.com left intact

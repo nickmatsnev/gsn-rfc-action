@@ -24,5 +24,5 @@ update_xml_data() {
 
     bash "/services/rfc/update_rfc_ticket.sh" "$username" "$password" "${environment}"
 
-    print_response_envelope_attributes "update" "${environment}"
+    print_response_envelope_attributes "rfc" "update" "${environment}"
 }
