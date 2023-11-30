@@ -5,7 +5,6 @@ description: 'Create and close fast RFC in GHA'
 branding:
   icon: 'file'
   color: 'yellow'
-
 inputs:
   Email:
     description: 'Your e-mail'
@@ -26,23 +25,101 @@ inputs:
     description: 'Description'
     required: true
   StartDate:
-    required: true
     type: datetime
     description: 'e.g. 2023-11-13 12:00:00'
-  EndDate:
     required: true
-    type: string
+  EndDate:
+    type: datetime
     description: 'e.g. 2023-11-13 13:00:00'
+    required: true
+  UatCtaskDescription:
+    description: 'Description of UAT ctask'
+    required: true
+  ImplCtaskDescription:
+    description: 'Description of Implementation ctask'
+    required: true
+  ApprovalType:
+    description: 'Type of approval'
+    required: true
+  WaitFor:
+    description: 'What to wait for'
+    required: true
+  RejectHandling:
+    description: 'How to handle rejections'
+    required: true
+  SlaCategory:
+    description: 'SLA Category'
+    required: true
+  Approver:
+    description: 'Who approves changes'
+    required: true
+  MaintenanceWindow:
+    description: 'Scheduled maintenance window'
+    required: true
+  ImpactedService:
+    description: 'Service impacted by change'
+    required: true
+  ImpactedBusinessUnit:
+    description: 'Business unit impacted by change'
+    required: true
+  ChangeTested:
+    description: 'Whether the change has been tested'
+    required: true
+  ImplementationRisk:
+    description: 'Risk associated with the implementation'
+    required: true
+  SkipRisk:
+    description: 'Whether to skip risk assessment'
+    required: true
+  KnownImpact:
+    description: 'Known impact of the change'
+    required: true
+  BackoutPlanned:
+    description: 'Is a backout plan in place'
+    required: true
+  BackoutAuthority:
+    description: 'Authority for backout execution'
+    required: true
+  BackoutGroups:
+    description: 'Groups involved in backout plan'
+    required: true
+  TriggerForBackout:
+    description: 'Trigger conditions for backout'
+    required: true
+  DurationOfBackout:
+    description: 'Duration of backout'
+    required: true
+  BackoutPlan:
+    description: 'Details of the backout plan'
+    required: true
+  SecurityClassification:
+    description: 'Security classification'
+    required: true
+  SecurityRegulation:
+    description: 'Security regulations applicable'
+    required: true
+  BuildRunActivity:
+    description: 'Build run activity details'
+    required: true
+  CountryNotified:
+    description: 'Country notified about the change'
+    required: true
+  CmdbCi:
+    description: 'Configuration Item from CMDB'
+    required: true
   Username:
+    description: 'Your username for authentication'
     required: true
     type: string
   Password:
+    description: 'Your password for authentication'
     required: true
     type: string
   Environment:
+    description: 'Deployment environment'
     required: true
     type: string
-
+    
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -55,6 +132,31 @@ runs:
     - '"${{ inputs.Description }}"'
     - '"${{ inputs.StartDate }}"'
     - '"${{ inputs.EndDate }}"'
+    - '"${{ inputs.UatCtaskDescription }}"'
+    - '"${{ inputs.ImplCtaskDescription }}"'
+    - '"${{ inputs.ApprovalType }}"'
+    - '"${{ inputs.WaitFor }}"'
+    - '"${{ inputs.RejectHandling }}"'
+    - '"${{ inputs.SlaCategory }}"'
+    - '"${{ inputs.Approver }}"'
+    - '"${{ inputs.MaintenanceWindow }}"'
+    - '"${{ inputs.ImpactedService }}"'
+    - '"${{ inputs.ImpactedBusinessUnit }}"'
+    - '"${{ inputs.ChangeTested }}"'
+    - '"${{ inputs.ImplementationRisk }}"'
+    - '"${{ inputs.SkipRisk }}"'
+    - '"${{ inputs.KnownImpact }}"'
+    - '"${{ inputs.BackoutPlanned }}"'
+    - '"${{ inputs.BackoutAuthority }}"'
+    - '"${{ inputs.BackoutGroups }}"'
+    - '"${{ inputs.TriggerForBackout }}"'
+    - '"${{ inputs.DurationOfBackout }}"'
+    - '"${{ inputs.BackoutPlan }}"'
+    - '"${{ inputs.SecurityClassification }}"'
+    - '"${{ inputs.SecurityRegulation }}"'
+    - '"${{ inputs.BuildRunActivity }}"'
+    - '"${{ inputs.CountryNotified }}"'
+    - '"${{ inputs.CmdbCi }}"'
     - '"${{ inputs.Username }}"'
     - '"${{ inputs.Password }}"'
     - '"${{ inputs.Environment }}"'
