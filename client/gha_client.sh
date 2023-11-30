@@ -22,7 +22,7 @@ email_regex="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
 
 datetime_regex="^([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$"
 
-if [ "$#" -ne 13 ]; then
+if [ "$#" -ne 36 ]; then
     echo -e "${Yellow} Incorrect number of arguments. Usage: $0 [email] [assignment_group] [u_application_name] [u_escalated_by] [u_change_coordinator] [description] [start_datetime] [end_datetime] [uat_ctask_description] [impl_ctask_description] [approval_type] [wait_for] [reject_handling] [sla_category] [approver] [maintenance_window] [impacted_service] [impacted_business_unit] [change_tested] [implementation_risk] [skip_risk] [known_impact] [backout_planned] [backout_authority] [backout_groups] [trigger_for_backout] [duration_of_backout] [backout_plan] [security_classification] [security_regulation] [build_run_activity] [country_notified] [cmdb_ci] [username] [password] [environment] $Color_Off"
 
     echo -e "${Yellow} You have entered $# parameters $Color_Off"
