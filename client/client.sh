@@ -62,7 +62,7 @@ fi
 
 
 ################# Printing the envelope attributes #################
-print_envelope_attributes "$action" "$env"
+print_envelope_attributes "rfc" "$action" "$env"
 ################# End of printing the envelope attributes #################
 
 
@@ -71,7 +71,7 @@ if [ "$1" = "create" ] || [ "$1" = "cr" ]; then
     if [ "$#" -eq 5 ]; then
 
         # Load the XML data from file
-        xml_data=$(cat "envelops/${env}/create.xml")
+        xml_data=$(cat "envelops/${env}/rfc/create.xml")
 
         # Store the old value of short description for possible future use or display
         old_value=$(echo "$xml_data" | grep -oP "(?<=<short_description>)[^<]+(?=</short_description>)")
@@ -82,10 +82,10 @@ if [ "$1" = "create" ] || [ "$1" = "cr" ]; then
         echo "Fast RFC creation"
 
         # Save the updated XML data back to file
-        echo "$xml_data" > "envelops/${env}/${action}.xml"
+        echo "$xml_data" > "envelops/${env}/rfc/${action}.xml"
         echo -e "$Blue Current value of description is:\n$old_value $Color_Off"
         echo -e "$Yellow New value of description is:\n${description} $Color_Off"
-        echo "$xml_data" > "envelops/${env}/${action}.xml"
+        echo "$xml_data" > "envelops/${env}/rfc/${action}.xml"
     fi
 fi
 ################# end of create with description #################
@@ -93,7 +93,7 @@ fi
 
 ################# Editing the envelope attributes #################
 if [ "$1" = "create" ] || [ "$1" = "cr" ] || [ "$1" = "update" ] || [ "$1" = "u" ]; then
-    input_xml="envelops/${env}/${action}.xml"
+    input_xml="envelops/${env}/rfc/${action}.xml"
     xml_data=$(cat "$input_xml")
 
     tags=($(grep -oP '<\K[^>]+(?=>[^<]+<\/[^>]+>)' "$input_xml"))

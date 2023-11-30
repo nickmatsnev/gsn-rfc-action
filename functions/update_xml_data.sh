@@ -9,12 +9,12 @@ update_xml_data() {
     local username=$4
     local password=$5
 
-    local xml_data=$(cat "/envelops/${environment}/update.xml")
+    local xml_data=$(cat "/envelops/${environment}/rfc/update.xml")
 
     xml_data=$(echo "$xml_data" | sed "s|<change_request>[^<]*</change_request>|<change_request>${ticket_number}</change_request>|g")
     xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>${state_value}</state>|g")
 
-    echo "$xml_data" > "/envelops/${environment}/update.xml"
+    echo "$xml_data" > "/envelops/${environment}/rfc/update.xml"
 
     if [ $? -eq 0 ]; then
         echo "The number was successfully inserted into the XML file."
@@ -22,7 +22,7 @@ update_xml_data() {
         echo "Failed to insert the number into the XML file."
     fi
 
-    bash "/services/update_rfc_ticket.sh" "$username" "$password" "${environment}"
+    bash "/services/rfc/update_rfc_ticket.sh" "$username" "$password" "${environment}"
 
-    print_response_envelope_attributes "update" "${environment}"
+    print_response_envelope_attributes "rfc" "update" "${environment}"
 }

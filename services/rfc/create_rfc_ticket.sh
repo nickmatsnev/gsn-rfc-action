@@ -5,7 +5,6 @@ if [ "$#" -ne 3 ]; then
     exit 1
 fi
 
-
 USERNAME=$1
 PASSWORD=$2
 ENV=$3
@@ -19,5 +18,5 @@ esac
 curl -X POST "$URL" \
     --user "$USERNAME:$PASSWORD" \
     -H "Content-Type: text/xml; charset=utf-8" \
-    --data-binary "@/envelops/${ENV}/update.xml" \
-    > "/responses/${ENV}/update_response.xml"
+    --data-binary "@/envelops/${ENV}/rfc/create.xml" \
+    > "/responses/${ENV}/rfc/create_response.xml"

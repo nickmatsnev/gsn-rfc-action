@@ -6,7 +6,7 @@ function save_output() {
     
     echo -e "$Green Saving the output... $Color_Off"
 
-    xml_response_data="/responses/${ENV}/${ACTION}_response.xml"
+    xml_response_data="/responses/${ENV}/rfc/${ACTION}_response.xml"
 
     rfc_ticket=$(grep -oP '<number>\K[^<]+' "$xml_response_data")
 

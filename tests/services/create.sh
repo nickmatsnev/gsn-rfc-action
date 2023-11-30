@@ -6,7 +6,7 @@ test_service() {
     local input_file=$3
     local expected_status=$4
 
-    output=$(../../services/create_rfc_ticket.sh "$username" "$password" < "$input_file")
+    output=$(../../services/rfc/create_rfc_ticket.sh "$username" "$password" < "$input_file")
     response_status=$(echo "$output" | grep -oP '(?<=<response_status>).*?(?=</response_status>)')
 
     if [ "$response_status" == "$expected_status" ]; then

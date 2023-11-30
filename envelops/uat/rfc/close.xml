@@ -3,7 +3,7 @@
 <soapenv:Body>
 <cchm:update>
 <template></template>
-<change_request>RFC2331247</change_request>
+<change_request>RFC0000000</change_request>
 </cchm:update>
 </soapenv:Body>
 </soapenv:Envelope>
