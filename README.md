@@ -21,7 +21,7 @@ on:
 jobs:
   test:
     name: Build And Push Image into GCR Dev
-    uses: API-Developer-Portal/rfc_service@v2.0.5
+    uses: API-Developer-Portal/rfc_service@v3
     with:
       Email: 'nikita.matsnev@dhl.com'
       AssignmentGroup: 'GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL'
