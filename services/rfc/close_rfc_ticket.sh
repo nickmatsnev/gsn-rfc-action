@@ -21,3 +21,10 @@ curl -X POST "$URL" \
     -H "SOAPAction: updateToApprovedForImpl" \
     --data-binary "@/envelops/${ENV}/rfc/close.xml" \
     > "/responses/${ENV}/rfc/close_response.xml"
+
+curl -X POST "$URL" \
+    --user "$USERNAME:$PASSWORD" \
+    -H "Content-Type: text/xml; charset=utf-8" \
+    -H "SOAPAction: updateToClosed" \
+    --data-binary "@/envelops/${ENV}/rfc/close.xml" \
+    > "/responses/${ENV}/rfc/close_response.xml"
