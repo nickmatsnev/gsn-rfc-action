@@ -1,0 +1,13 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cchm="https://servicenow.dhl.com/ns/cchm_sysapproval_group_create/">
+<soapenv:Header/>
+<soapenv:Body>
+<cchm:insert>
+<change_request>RFC2357741</change_request>
+<u_approval_type>change_afi</u_approval_type>
+<assignment_group>GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL</assignment_group>
+<wait_for>any</wait_for>
+<reject_handling>reject</reject_handling>
+<u_sla_category>2d</u_sla_category>
+</cchm:insert>
+</soapenv:Body>
+</soapenv:Envelope>

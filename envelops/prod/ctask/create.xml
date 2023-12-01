@@ -1,0 +1,16 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cchm="https://servicenow.dhl.com/ns/cchm_change_task_create/">
+<soapenv:Header/>
+<soapenv:Body>
+<cchm:insert>
+<template></template>
+<change_request>RFC2357782</change_request>
+<short_description>CTask description</short_description>
+<assignment_group>CAB-BIMODAL</assignment_group>
+<u_change_stage>build_and_test</u_change_stage>
+<u_task_type>uat</u_task_type>
+<work_start>2023-12-12 10:00:00</work_start>
+<work_end>2023-12-12 10:00:00</work_end>
+<description>aaa</description>
+</cchm:insert>
+</soapenv:Body>
+</soapenv:Envelope>
