@@ -85,8 +85,9 @@ case "${36}" in
     prod|PROD|Prod) environment="prod" ;;
     *) echo -e "${Red} Invalid environment. Use UAT or PROD. Current environment is ${13} $Color_Off"; exit 1 ;;
 esac
-
-if [ "$start_date_sec" -ge "$end_date_sec" ]; then
+start_date_sec_utc=$(date -d "$start_date_sec" +%s)
+end_date_sec_utc=$(date -d "$end_date_sec" +%s)
+if [ "$start_date_sec_utc" -ge "$end_date_sec_utc" ]; then
     echo -e "${Yellow} The start date must be earlier than the end date. $Color_Off"
     exit 1
 fi
