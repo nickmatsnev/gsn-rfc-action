@@ -18,7 +18,7 @@ esac
 cat ../../envelops/${ENV}/groupapprove/create.xml
 
 curl -X POST "$URL" \
-    -x http://b2b-http.dhl.com:8080 \
+ 
     --user "$USERNAME:$PASSWORD" \
     -H "Content-Type: text/xml; charset=utf-8" \
     --data-binary "@/envelops/${ENV}/groupapprove/create.xml" \

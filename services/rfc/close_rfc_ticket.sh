@@ -16,7 +16,7 @@ case $3 in
 esac
 
 curl -X POST "$URL" \
-    -x http://b2b-http.dhl.com:8080 \
+ 
     --user "$USERNAME:$PASSWORD" \
     -H "Content-Type: text/xml; charset=utf-8" \
     -H "SOAPAction: updateToApprovedForImpl" \
@@ -24,7 +24,7 @@ curl -X POST "$URL" \
     > "/responses/${ENV}/rfc/close_response.xml"
 
 curl -X POST "$URL" \
-    -x http://b2b-http.dhl.com:8080 \
+ 
     --user "$USERNAME:$PASSWORD" \
     -H "Content-Type: text/xml; charset=utf-8" \
     -H "SOAPAction: updateToClosed" \
