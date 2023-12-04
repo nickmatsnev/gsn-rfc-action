@@ -79,7 +79,6 @@ cmdb_ci=${33}
 username=${34}
 password=${35}
 
-
 case "${36}" in
     uat|UAT|Uat) environment="uat" ;;
     prod|PROD|Prod) environment="prod" ;;
