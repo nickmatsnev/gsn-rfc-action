@@ -18,7 +18,6 @@ esac
 cat ../../envelops/${ENV}/groupapprove/create.xml
 
 curl -X POST "$URL" \
- 
     --user "$USERNAME:$PASSWORD" \
     -H "Content-Type: text/xml; charset=utf-8" \
     --data-binary "@/envelops/${ENV}/groupapprove/create.xml" \

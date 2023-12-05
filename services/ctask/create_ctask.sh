@@ -16,7 +16,6 @@ case $3 in
 esac
 
 curl -X POST "$URL" \
- 
     --user "$USERNAME:$PASSWORD" \
     -H "Content-Type: text/xml; charset=utf-8" \
     --data-binary "@/envelops/${ENV}/ctask/create.xml" \

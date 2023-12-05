@@ -24,7 +24,6 @@ curl -X POST "$URL" \
     > "/responses/${ENV}/rfc/close_response.xml"
 
 curl -X POST "$URL" \
- 
     --user "$USERNAME:$PASSWORD" \
     -H "Content-Type: text/xml; charset=utf-8" \
     -H "SOAPAction: updateToClosed" \
