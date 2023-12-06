@@ -18,7 +18,7 @@ Permission to use, copy, modify, and distribute this software and its documentat
 
 Original W3C files; http://www.w3.org/2001/06/soap-envelope
 Changes made: 
-     - reverted namespace to http://schemas.xmlsoap.org/soap/envelope/
+     - reverted namespace to /globals/schema.xml
      - reverted mustUnderstand to only allow 0 and 1 as lexical values
 	 - made encodingStyle a global attribute 20020825
 	 - removed default value from mustUnderstand attribute declaration
@@ -30,7 +30,7 @@ COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL OR CONSEQ
 The name and trademarks of copyright holders may NOT be used in advertising or publicity pertaining to the software without specific, written prior permission. Title to copyright in this software and any associated documentation will at all times remain with copyright holders.
 
  -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.xmlsoap.org/soap/envelope/" targetNamespace="http://schemas.xmlsoap.org/soap/envelope/">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="/globals/schema.xml" targetNamespace="/globals/schema.xml">
 <!--  Envelope, header and body  -->
 <xs:element name="Envelope" type="tns:Envelope"/>
 <xs:complexType name="Envelope">

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+<soapenv:Envelope xmlns:soapenv="/globals/schema.xml"
                   xmlns:web="https://test.com/cchm_change_request_create.do?SOAP"
                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                  xsi:schemaLocation="http://schemas.xmlsoap.org/soap/envelope/ ">
+                  xsi:schemaLocation="/globals/schema.xml ">
     <soapenv:Header/>
     <soapenv:Body>
         <Create>

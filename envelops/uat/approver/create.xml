@@ -1,4 +1,4 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cchm="https://servicenow.dhl.com/ns/cchm_sysapproval_approver_create/">
+<soapenv:Envelope xmlns:soapenv="/globals/schema.xml" xmlns:cchm="https://servicenow.dhl.com/ns/cchm_sysapproval_approver_create/">
 <soapenv:Header/>
 <soapenv:Body>
 <cchm:insert>

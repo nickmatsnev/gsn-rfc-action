@@ -1,7 +1,7 @@
 #!/bin/bash
 
 NS="http://webservice.gsn.com"
-SOAP_BODY="<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:web=\"$NS\">"
+SOAP_BODY="<soapenv:Envelope xmlns:soapenv=\"/globals/schema.xml\" xmlns:web=\"$NS\">"
 
 SOAP_BODY="$SOAP_BODY<gsnAssignedGroup>GROUP API Developer Portal</gsnAssignedGroup>"
 SOAP_BODY="$SOAP_BODY<gsnServiceHostname>https://servicenow.dhl.com</gsnServiceHostname>"
