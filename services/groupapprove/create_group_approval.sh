@@ -15,8 +15,6 @@ case $3 in
     *) echo -e "$Red Invalid env, we only support [uat|prod] $Color_Off"; exit 1 ;;
 esac
 
-cat ../../envelops/${ENV}/groupapprove/create.xml
-
 curl -X POST "$URL" \
     --user "$USERNAME:$PASSWORD" \
     -H "Content-Type: text/xml; charset=utf-8" \
