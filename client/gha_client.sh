@@ -295,6 +295,8 @@ print_response_envelope_attributes "ctask" "update" "${environment}"
 
 xml_data=$(cat "/envelops/${environment}/rfc/update.xml")
 
+xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<u_regions>[^<]*</u_regions>|<u_regions>ASIA</u_regions>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_maintenance_window>[^<]*</u_maintenance_window>|<u_maintenance_window>${maintenance_window}</u_maintenance_window>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_impacted_service>[^<]*</u_impacted_service>|<u_impacted_service>${impacted_service}</u_impacted_service>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_impacted_business_unit>[^<]*</u_impacted_business_unit>|<u_impacted_business_unit>${impacted_business_unit}</u_impacted_business_unit>|g")
@@ -311,10 +313,12 @@ xml_data=$(echo "$xml_data" | sed -e "s|<backout_plan>[^<]*</backout_plan>|<back
 xml_data=$(echo "$xml_data" | sed -e "s|<u_security_classification>[^<]*</u_security_classification>|<u_security_classification>${security_classification}</u_security_classification>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_security_regulation>[^<]*</u_security_regulation>|<u_security_regulation>${security_regulation}</u_security_regulation>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_build_run_activity>[^<]*</u_build_run_activity>|<u_build_run_activity>${build_run_activity}</u_build_run_activity>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<u_country_notified>[^<]*</u_country_notified>|<u_country_notified>${country_notified}</backout_plan>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<u_country_notified>[^<]*</u_country_notified>|<u_country_notified>${country_notified}</u_country_notified>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<cmdb_ci>[^<]*</cmdb_ci>|<cmdb_ci>${cmdb_ci}</cmdb_ci>|g")
 
 echo "$xml_data" > "/envelops/${environment}/rfc/update.xml"
+
+cat /envelops/uat/rfc/update.xml
 
 update_xml_data "${environment}" "${TICKET_NUMBER}" "Registered" "${username}" "${password}"
 ################# End of updating to registered of the RFC script #################
