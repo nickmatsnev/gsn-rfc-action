@@ -21,11 +21,11 @@ source "functions/client/save_output.sh"
 
 
 ################# Check if the arguments are set correctly #################
-if [ "$#" -ne 5 ]; then
+if [ "$#" -ne 6 ]; then
     if [ "$1" = "create" ] || [ "$1" = "cr" ]; then
         echo -e "${Yellow} Starting RFC Ticket creation $Color_Off"
     else
-        echo -e "$Yellow How to use: $0 [create|cr|update|u|close|cl|read|r] RFCXXXXXXX [username] [password] [environment] $Color_Off"
+        echo -e "$Yellow How to use: $0 [create|cr|update|u|close|cl|read|r] [type] [number] [username] [password] [environment] $Color_Off"
         exit 1
     fi
 fi
@@ -43,20 +43,23 @@ esac
 
 # check if create with description
 if [ "$1" = "create" ] || [ "$1" = "cr" ]; then
-    if [ "$#" -eq 5 ]; then
-      description=$2
+    if [ "$#" -eq 6 ]; then
+      folder=$2
+      description=$3
+      username=$4
+      password=$5
+      env=$6
+    else
+      folder=$2
       username=$3
       password=$4
       env=$5
-    else
-      username=$2
-      password=$3
-      env=$4
     fi
 else
-    username=$3
-    password=$4
-    env=$5
+    folder=$2
+    username=$4
+    password=$5
+    env=$6
 fi
 ################# End of checking if the arguments values are correct #################
 
@@ -68,10 +71,10 @@ print_envelope_attributes "rfc" "$action" "$env"
 
 ################# create with description #################
 if [ "$1" = "create" ] || [ "$1" = "cr" ]; then
-    if [ "$#" -eq 5 ]; then
+    if [ "$#" -eq 6 ]; then
 
         # Load the XML data from file
-        xml_data=$(cat "envelops/${env}/rfc/create.xml")
+        xml_data=$(cat "envelops/${env}/${folder}/create.xml")
 
         # Store the old value of short description for possible future use or display
         old_value=$(echo "$xml_data" | grep -oP "(?<=<short_description>)[^<]+(?=</short_description>)")
@@ -79,13 +82,13 @@ if [ "$1" = "create" ] || [ "$1" = "cr" ]; then
         # Update the XML data with the new short description
         xml_data=$(echo "$xml_data" | sed "s|<short_description>[^<]*</short_description>|<short_description>${description}</short_description>|g")
 
-        echo "Fast RFC creation"
+        echo -e "Fast ${folder} creation"
 
         # Save the updated XML data back to file
-        echo "$xml_data" > "envelops/${env}/rfc/${action}.xml"
+        echo "$xml_data" > "envelops/${env}/${folder}/${action}.xml"
         echo -e "$Blue Current value of description is:\n$old_value $Color_Off"
         echo -e "$Yellow New value of description is:\n${description} $Color_Off"
-        echo "$xml_data" > "envelops/${env}/rfc/${action}.xml"
+        echo "$xml_data" > "envelops/${env}/${folder}/${action}.xml"
     fi
 fi
 ################# end of create with description #################
@@ -93,7 +96,7 @@ fi
 
 ################# Editing the envelope attributes #################
 if [ "$1" = "create" ] || [ "$1" = "cr" ] || [ "$1" = "update" ] || [ "$1" = "u" ]; then
-    input_xml="envelops/${env}/rfc/${action}.xml"
+    input_xml="envelops/${env}/${folder}/${action}.xml"
     xml_data=$(cat "$input_xml")
 
     tags=($(grep -oP '<\K[^>]+(?=>[^<]+<\/[^>]+>)' "$input_xml"))
@@ -119,7 +122,15 @@ fi
 
 
 ################# Checking if the ticket number is valid #################
-if [[ $2 =~ ^RFC[0-9]{7}$ ]]; then
+case $folder in
+    rfc) prefix="RFC" ;;
+    groupapprove) prefix="GAPPR" ;;
+    approver) prefix="APPR" ;;
+    ctask) prefix="CTASK" ;;
+    *) echo -e "$Red Invalid action. Use rfc, groupapprove, approver or ctask $Color_Off"; exit 1 ;;
+esac
+
+if [[ $2 =~ ^${prefix}[0-9]{7}$ ]]; then
     ticket_number=$2
 else
     if [ "$1" = "create" ] || [ "$1" = "cr" ]; then
@@ -133,20 +144,19 @@ fi
 
 
 ################# Calling the service script #################
-bash "services/client/${action}_rfc_ticket.sh" "${username}" "${password}" "${env}"
+case $folder in
+    rfc) bash "services/client/${action}_rfc_ticket.sh" "${username}" "${password}" "${env}" ;;
+    groupapprove) bash "services/client/${action}_group_approval.sh" "${username}" "${password}" "${env}" ;;
+    approver) bash "services/client/${action}_approver.sh" "${username}" "${password}" "${env}" ;;
+    ctask) bash "services/client/${action}_ctask.sh" "${username}" "${password}" "${env}" ;;
+    *) echo -e "$Red Invalid action. Use rfc, groupapprove, approver or ctask $Color_Off"; exit 1 ;;
+esac
 ################# End of calling the service script #################
 
 
 ################# Printing the response #################
 print_response_envelope_attributes "$action" "${env}"
-
-case $1 in
-    create|cr) echo -e "$Green Finishing creating the ticket... $Color_Off" ;;
-    update|u) echo -e "$Green Finishing updating the ticket... $Color_Off" ;;
-    close|cl) echo -e "$Green Finishing closing the ticket... $Color_Off" ;;
-    read|r) echo -e "$Green Finishing reading the ticket... $Color_Off" ;;
-    *) echo -e "$Red Invalid action. Use create|cr, update|u, read|r or close|cl $Color_Off"; exit 1 ;;
-esac
+echo -e "$Green Finishing ${ACTION}ing the ticket ${number}... $Color_Off" ;;
 ################# End of printing the response #################
 
 
