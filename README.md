@@ -1,10 +1,12 @@
-# GSN Automation
+# Hera - GSN Automation
 
 ## 1. Intro
 
 [Link to source code](https://git.dhl.com/API-Developer-Portal/rfc_service) - feel free to fork and adjust to your own needs.
 
 GSN Automation provides an efficient solution for managing Requests for changes (RFCs). It enables users to create, update, and close GSN RFCs seamlessly, enhancing the workflow in GitHub Actions. It is quite fast, as it takes around a second for the action to perform, thanks to the Bash scripts and WSDL architecture of requests.
+
+Named after the Greek goddess Hera, this Hera brings together the API Developer Portal and ServiceNow smoothly and efficiently. It's like a bridge that makes working between these two systems easy and straightforward. Just like Hera united different worlds, our project connects these important tools in a simple, yet powerful way.
 
 ## 2. User Guide
 
@@ -171,3 +173,12 @@ Envelops are in ```envelops```.
 ## Architecture
 
 ![Architecture](styles/structure.png)
+
+
+## Timeline
+![autorfc_timeline](https://media.git.dhl.com/user/15023/files/8a77f85b-d5e3-4f0b-8cf2-b8890551635e)
+
+
+
+## Example of flow in GAPI Developer Portal
+![PortalGSNFlow](https://media.git.dhl.com/user/15023/files/eebc54f4-d760-4a78-9aae-cedda02c0078)
