@@ -3,9 +3,9 @@
 <soapenv:Body>
 <cchm:insert>
 <template></template>
-<change_request> </change_request>
-<sysapproval_group> </sysapproval_group>
-<approver>nikita.matsnev@dhl.com</approver>
+<change_request> RFCXXXXXXX</change_request>
+<sysapproval_group>NUMBER</sysapproval_group>
+<approver>name.surname@dhl.com</approver>
 </cchm:insert>
 </soapenv:Body>
 </soapenv:Envelope>
