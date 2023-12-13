@@ -22,14 +22,14 @@ on:
 
 jobs:
   test:
-    name: Build And Push Image into GCR Dev
+    name: Create RFC
     uses: API-Developer-Portal/rfc_service@v3
     with:
-      Email: 'nikita.matsnev@dhl.com'
-      AssignmentGroup: 'GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL'
+      Email: 'name.surname@dhl.com'
+      AssignmentGroup: 'GLOBAL-GROUP'
       ApplicationName: 'devportal'
-      EscalatedBy: 'saina.bayat@dhl.com'
-      ChangeCoordinator: 'ondrej.sztacho@dhl.com'
+      EscalatedBy: 'name.surname@dhl.com'
+      ChangeCoordinator: 'name.surname@dhl.com'
       Description: 'test rfc gha'
       StartDate: '2023-12-12 10:00:00'
       EndDate: '2023-12-12 11:00:00'
@@ -39,17 +39,17 @@ jobs:
       WaitFor: 'any'
       RejectHandling: 'reject'
       SlaCategory: '2d'
-      Approver: 'nikita.matsnev@dhl.com'
+      Approver: 'name.surname@dhl.com'
       MaintenanceWindow: 'Inside'
-      ImpactedService: 'GROUP API DEVELOPER PORTAL'
+      ImpactedService: 'GROUP SERVICE'
       ImpactedBusinessUnit: 'ITS'
       ChangeTested: 'Yes'
       ImplementationRisk: 'Description of impl risk'
       SkipRisk: 'Description of skip risk'
       KnownImpact: 'Known impact description'
       BackoutPlanned: 'Plan of backout'
-      BackoutAuthority: 'igor.nemykin@dhl.com'
-      BackoutGroups: 'GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL'
+      BackoutAuthority: 'name.surname@dhl.com'
+      BackoutGroups: 'GLOBAL-GROUP'
       TriggerForBackout: 'Not deployed'
       DurationOfBackout: '1 minute'
       BackoutPlan: 'description of backout plan'
@@ -57,7 +57,7 @@ jobs:
       SecurityRegulation: 'No'
       BuildRunActivity: 'BUILD'
       CountryNotified: 'Yes'
-      CmdbCi: 'PRG-SOBA-DEVELOPER-PORTAL-APP'
+      CmdbCi: 'PRG-APP'
       Username: '${secrets.username}'
       Password: '${secrets.password}'
       Environment: 'uat'
