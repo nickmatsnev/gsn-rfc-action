@@ -6,7 +6,7 @@
 
 GSN Automation provides an efficient solution for managing Requests for changes (RFCs). It enables users to create, update, and close GSN RFCs seamlessly, enhancing the workflow in GitHub Actions. It is quite fast, as it takes around a second for the action to perform, thanks to the Bash scripts and WSDL architecture of requests.
 
-Named after the Greek goddess Hera, this Hera brings together the API Developer Portal and ServiceNow smoothly and efficiently. It's like a bridge that makes working between these two systems easy and straightforward. Just like Hera united different worlds, our project connects these important tools in a simple, yet powerful way.
+Named after the Greek goddess Hera, this service brings together the API Developer Portal and ServiceNow smoothly and efficiently. It's like a bridge that makes working between these two systems easy and straightforward. Just like Hera united different worlds, this project connects these important tools in a simple, yet powerful way.
 
 ## 2. User Guide
 
