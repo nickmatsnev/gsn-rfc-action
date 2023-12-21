@@ -98,7 +98,7 @@ echo -e "${Yellow} Starting RFC Ticket creation $Color_Off"
 xml_data=$(cat "/envelops/${environment}/rfc/create.xml")
 
 xml_data=$(echo "$xml_data" | sed \
-    -e "s|<short_description>[^<]*</short_description>|<short_description>$6</short_description>|g" \
+    -e "s|<short_description>[^<]*</short_description>|<short_description>Deploy using FastFRC</short_description>|g" \
     -e "s|<description>[^<]*</description>|<description>$6</description>|g" \
     -e "s|<u_requested_by>[^<]*</u_requested_by>|<u_requested_by>$1</u_requested_by>|g" \
     -e "s|<assignment_group>[^<]*</assignment_group>|<assignment_group>$2</assignment_group>|g" \
