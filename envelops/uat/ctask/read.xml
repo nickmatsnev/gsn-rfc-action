@@ -1,8 +1,8 @@
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cchm="https://servicenow.dhl.com/ns/change_task/">
 <soapenv:Header/>
 <soapenv:Body>
-<cchm:getKeys>
-<change_request>d4dc712d972f75105eeb33371153af01</change_request>
-</cchm:getKeys>
+<cchm:get>
+<sys_id>2cdc352197ab71d082c01e800153aff8</sys_id>
+</cchm:get>
 </soapenv:Body>
 </soapenv:Envelope>
