@@ -10,8 +10,8 @@ PASSWORD=$2
 ENV=$3
 
 case $ENV in
-    uat|UAT|Uat) URL="https://soap.servicenow-uat.dhl.com/cchm_change_request_read.do?SOAP" ;;
-    prod|PROD|Prod) URL="https://soap.servicenow.dhl.com/cchm_change_request_read.do?SOAP" ;;
+    uat|UAT|Uat) URL="https://soap.servicenow-uat.dhl.com/change_task.do?SOAP" ;;
+    prod|PROD|Prod) URL="https://soap.servicenow.dhl.com/change_task.do?SOAP" ;;
     *) echo "Invalid env, we only support [uat|prod]"; exit 1 ;;
 esac
 
