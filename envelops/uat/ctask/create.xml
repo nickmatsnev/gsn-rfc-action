@@ -5,7 +5,7 @@
 <template></template>
 <change_request>RFC2357782</change_request>
 <short_description>CTask description</short_description>
-<assignment_group>CAB-BIMODAL</assignment_group>
+<assignment_group>GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL</assignment_group>
 <u_change_stage>build_and_test</u_change_stage>
 <u_task_type>uat</u_task_type>
 <work_start>2023-12-12 10:00:00</work_start>

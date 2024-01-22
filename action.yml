@@ -10,7 +10,7 @@ inputs:
     description: 'Your e-mail'
     required: true
   AssignmentGroup:
-    description: 'e.g. GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL'
+    description: 'e.g. RFC2365314'
     required: true
   ApplicationName:
     description: 'e.g. devportal'

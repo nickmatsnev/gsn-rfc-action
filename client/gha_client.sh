@@ -137,7 +137,7 @@ xml_data=$(cat "/envelops/${environment}/groupapprove/create.xml")
 
 xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_approval_type>[^<]*</u_approval_type>|<u_approval_type>${approval_type}</u_approval_type>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<assignment_group>[^<]*</assignment_group>|<assignment_group>CAB-BIMODAL</assignment_group>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<assignment_group>[^<]*</assignment_group>|<assignment_group>GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL</assignment_group>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<wait_for>[^<]*</wait_for>|<wait_for>${wait_for}</wait_for>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<reject_handling>[^<]*</reject_handling>|<reject_handling>${reject_handling}</reject_handling>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_sla_category>[^<]*</u_sla_category>|<u_sla_category>${sla_category}</u_sla_category>|g")
@@ -167,7 +167,7 @@ print_response_envelope_attributes "approver" "create" "${environment}"
 
 
 ################# Updating to registered of the RFC ticket #################   
-update_xml_data "${environment}" "${TICKET_NUMBER}" "Registered" "${username}" "${password}"
+# update_xml_data "${environment}" "${TICKET_NUMBER}" "Registered" "${username}" "${password}"
 ################# End of updating to registered of the RFC ticket #################   
 
 ################# Update to be approved for implementation of the RFC ticket #################
@@ -243,9 +243,11 @@ xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${uat_ctask_number}</change_task>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>1</state>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<due_date>[^<]*</due_date>|<due_date>${rtp_date}</due_date>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${end_date_sec_utc}</work_end>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${start_date_sec_utc}</work_start>|g")
 
 echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
-print_envelope_attributes "ctask" "update" "${environment}"
 bash  "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
 print_response_envelope_attributes "ctask" "update" "${environment}"
 # ################# End of updating to assigned UAT CTask #################
@@ -258,6 +260,9 @@ xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${uat_ctask_number}</change_task>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>110</state>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<due_date>[^<]*</due_date>|<due_date>${rtp_date}</due_date>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${end_date_sec_utc}</work_end>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${start_date_sec_utc}</work_start>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code>implemented</u_close_code>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes>UAT successfully tested and passed</close_notes>|g")
 
@@ -266,6 +271,78 @@ echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
 bash  "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
 print_response_envelope_attributes "ctask" "update" "${environment}"
 # ################# End of updating to assigned UAT CTask #################
+
+# ################# Updating to assigned impl CTask #################   
+
+xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
+
+xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${impl_ctask_number}</change_task>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>1</state>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<due_date>[^<]*</due_date>|<due_date>${rtp_date}</due_date>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${end_date_sec_utc}</work_end>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${start_date_sec_utc}</work_start>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code></u_close_code>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes></close_notes>|g")
+
+echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
+bash  "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
+print_response_envelope_attributes "ctask" "update" "${environment}"
+# ################# End of updating to assigned impl CTask #################
+
+# ################# Updating to completed impl CTask #################   
+
+xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
+
+xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${impl_ctask_number}</change_task>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>110</state>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<due_date>[^<]*</due_date>|<due_date>${rtp_date}</due_date>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${end_date_sec_utc}</work_end>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${start_date_sec_utc}</work_start>|g")
+
+xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code>implemented</u_close_code>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes>implementation task has successfully implemented</close_notes>|g")
+echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
+bash  "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
+print_response_envelope_attributes "ctask" "update" "${environment}"
+# ################# End of updating to in completed impl CTask #################
+
+
+
+# ################# Updating to assigned pir CTask #################   
+
+xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
+
+xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${pir_ctask_number}</change_task>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>1</state>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<due_date>[^<]*</due_date>|<due_date>${rtp_date}</due_date>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${end_date_sec_utc}</work_end>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${start_date_sec_utc}</work_start>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code></u_close_code>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes></close_notes>|g")
+echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
+bash  "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
+print_response_envelope_attributes "ctask" "update" "${environment}"
+# ################# End of updating to in assigned pir CTask #################
+
+# ################# Updating to completed pir CTask #################   
+
+xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
+
+xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${pir_ctask_number}</change_task>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>110</state>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<due_date>[^<]*</due_date>|<due_date>${rtp_date}</due_date>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${end_date_sec_utc}</work_end>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${start_date_sec_utc}</work_start>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code>implemented</u_close_code>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes>post implementation review task has successfully implemented and passed</close_notes>|g")
+echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
+bash  "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
+print_response_envelope_attributes "ctask" "update" "${environment}"
+# ################# End of updating to  completed pir CTask #################
 
 ################# Updating to RFC to Approved for Implementation #################   
 xml_data=$(cat "/envelops/${environment}/rfc/update.xml")
