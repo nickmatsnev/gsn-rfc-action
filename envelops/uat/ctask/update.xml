@@ -8,6 +8,8 @@
 <close_notes> </close_notes>
 <assignment_group>GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL</assignment_group>
 <state> </state>
+<work_start> </work_start>
+<work_end> </work_end>
 </cchm:update>
 </soapenv:Body>
 </soapenv:Envelope>
