@@ -10,6 +10,7 @@
 <state> </state>
 <work_start> </work_start>
 <work_end> </work_end>
+<due_date> </due_date>
 </cchm:update>
 </soapenv:Body>
 </soapenv:Envelope>
