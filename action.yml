@@ -26,11 +26,11 @@ inputs:
     required: true
   StartDate:
     type: datetime
-    description: 'e.g. 2023-11-13 12:00:00'
+    description: 'e.g. 2024-11-13 12:00:00'
     required: true
   EndDate:
     type: datetime
-    description: 'e.g. 2023-11-13 13:00:00'
+    description: 'e.g. 2024-11-13 13:00:00'
     required: true
   UatCtaskDescription:
     description: 'Description of UAT ctask'

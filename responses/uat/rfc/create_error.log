@@ -1,11 +1,13 @@
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Could not resolve host: POST
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Could not resolve host: POST
 * Closing connection 0
 curl: (6) Could not resolve host: POST
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 165.72.196.36:443...
+
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 165.72.196.36:443...
 * Connected to soap.servicenow-uat.dhl.com (165.72.196.36) port 443 (#1)
 * ALPN, offering h2
 * ALPN, offering http/1.1
@@ -51,7 +53,7 @@ curl: (6) Could not resolve host: POST
 { [16 bytes data]
 * SSL connection using TLSv1.2 / ECDHE-RSA-AES256-GCM-SHA384
 * ALPN, server did not agree to a protocol
-* Server certificate:
+* Server certificate:2024
 *  subject: C=DE; ST=Nordrhein-Westfalen; L=Bonn; O=Deutsche Post AG; CN=servicenow.dhl.com
 *  start date: Aug 28 07:52:19 2023 GMT
 *  expire date: Aug 27 07:51:19 2024 GMT
@@ -70,7 +72,8 @@ curl: (6) Could not resolve host: POST
 > Content-Length: 29
 > 
 } [29 bytes data]
-100    29    0     0  100    29      0    118 --:--:-- --:--:-- --:--:--   118* TLSv1.2 (IN), TLS header, Supplemental data (23):
+
+100    29    0     0  100    29      0    118 --:--:-- --:--:-- --:--:--   118* TLSv1.2 (IN), TLS header, Supplemental data (23):
 { [5 bytes data]
 * Mark bundle as not supporting multiuse
 < HTTP/1.1 500 Internal Server Error
@@ -81,14 +84,14 @@ curl: (6) Could not resolve host: POST
 < Cache-Control: no-cache,no-store,must-revalidate,max-age=-1
 < Expires: 0
 < X-TRANSACTION-TIME-MS: 25
-< X-TRANSACTION-TIME: 0:00:00.025
+< X-TRANSACTION-TIME202400:00.025
 < Content-Type: text/xml;charset=UTF-8
 < Transfer-Encoding: chunked
 < Date: Tue, 28 Nov 2023 14:03:26 GMT
 < X-Cnection: close
 < Server: ServiceNow
 < Set-Cookie: JSESSIONID=B8B27E94AEDDAB72B275A80F4D7D80FA; Path=/; HttpOnly; SameSite=None; Secure
-< Set-Cookie: glide_user=; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/; HttpOnly; SameSite=None; Secure
+< Set-Cookie: glide_user=; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/; HttpOnly; SameSit2024ne; Secure
 < Set-Cookie: glide_user_session=; Max-Age=0; Expires=Thu, 01-Jan-1970 00:00:10 GMT; Path=/; HttpOnly; SameSite=None; Secure
 < Set-Cookie: glide_user_route=glide.d271d0c2f0173bfd9779013707b9d85e; Max-Age=2147483647; Expires=Sun, 16-Dec-2091 17:17:33 GMT; Path=/; HttpOnly; SameSite=None; Secure
 < Set-Cookie: glide_session_store=60971BDD473679508014650F436D43AE; Max-Age=1800; Expires=Tue, 28-Nov-2023 14:33:26 GMT; Path=/; HttpOnly; SameSite=None; Secure
@@ -99,5 +102,6 @@ curl: (6) Could not resolve host: POST
 { [327 bytes data]
 * TLSv1.2 (IN), TLS header, Supplemental data (23):
 { [5 bytes data]
-100   349    0   320  100    29   1207    109 --:--:-- --:--:-- --:--:--  1316
+
+100   349    0   320  100    29   1207    109 --:--:-- --:--:-- --:--:--  1316
 * Connection #1 to host soap.servicenow-uat.dhl.com left intact

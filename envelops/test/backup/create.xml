@@ -12,9 +12,9 @@
 <u_escalated_by>saina.bayat@dhl.com</u_escalated_by>
 <category>Release</category>
 <u_subcategory>Configuration</u_subcategory>
-<start_date>2023-10-10 12:00:00</start_date>
-<end_date>2023-10-10 13:00:00</end_date>
-<u_customer_rtp_date>2023-10-10</u_customer_rtp_date>
+<start_date>2024-10-10 12:00:00</start_date>
+<end_date>2024-10-10 13:00:00</end_date>
+<u_customer_rtp_date>2024-10-10</u_customer_rtp_date>
 <u_application_type>Internally Developed Application</u_application_type>
 <u_application_name>devportal</u_application_name>
 <reason>enhancement_business_requirement</reason>
