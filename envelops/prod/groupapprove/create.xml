@@ -4,7 +4,7 @@
 <cchm:insert>
 <change_request>RFC2357741</change_request>
 <u_approval_type>change_afi</u_approval_type>
-<assignment_group>GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL</assignment_group>
+<assignment_group>CAB-BIMODAL</assignment_group>
 <wait_for>any</wait_for>
 <reject_handling>reject</reject_handling>
 <u_sla_category>2d</u_sla_category>
