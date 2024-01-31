@@ -15,71 +15,77 @@ source "/functions/print_envelope_attributes.sh"
 source "/functions/print_response_envelope_attributes.sh"
 source "/functions/save_output.sh"
 source "/functions/update_xml_data.sh"
+
+increment_hour() {
+    local date_str=$1
+    local IFS=" :-"
+    read -r year month day hour minute second <<< "$date_str"
+
+    ((hour+=1))
+
+    if [ $hour -gt 24 ]; then
+        hour=$((hour - 24))
+    fi
+
+    printf "%04d-%02d-%02d %02d:%02d:%02d\n" "$year" "$month" "$day" "$hour" "$minute" "$second"
+}
 ################# End of functions #################
 
 ################# Check if the arguments are set correctly #################
+requester=${1}
+assignment_group=${2}
+u_application_name=${3}
+u_escalated_by=${4}
+u_change_coordinator=${5}
+title=${6}
+description=${7}
+current_datetime=$(date "+%Y-%m-%d %H:%M:%S")
+start_date_sec=$(increment_hour "${current_datetime}")
+end_date_sec=$(increment_hour "${start_date_sec}")
+rtp_date=${start_date_sec%% *}
+approver=${8}
+template_number=${9}
+username=${10}
+password=${11}
+
+case "${12}" in
+    uat|UAT|Uat) environment="uat" ;;
+    prod|PROD|Prod) environment="prod" ;;
+    *) echo -e "${Red} Invalid environment. Use UAT or PROD. Current environment is ${environment} $Color_Off"; exit 1 ;;
+esac
+
 email_regex="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
 
 datetime_regex="^([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$"
 
-if [ "$#" -ne 36 ]; then
-    echo -e "${Yellow} Incorrect number of arguments. Usage: $0 [email] [assignment_group] [u_application_name] [u_escalated_by] [u_change_coordinator] [description] [start_datetime] [end_datetime] [uat_ctask_description] [impl_ctask_description] [approval_type] [wait_for] [reject_handling] [sla_category] [approver] [maintenance_window] [impacted_service] [impacted_business_unit] [change_tested] [implementation_risk] [skip_risk] [known_impact] [backout_planned] [backout_authority] [backout_groups] [trigger_for_backout] [duration_of_backout] [backout_plan] [security_classification] [security_regulation] [build_run_activity] [country_notified] [cmdb_ci] [username] [password] [environment] $Color_Off"
+if [ "$#" -ne 12 ]; then
+    echo -e "${Yellow} Incorrect number of arguments. Usage: $0 [requester] [assignment_group] [u_application_name] [u_escalated_by] [u_change_coordinator] [title] [description] [approver] [template] [username] [password] [environment] $Color_Off"
 
     echo -e "${Yellow} You have entered $# parameters $Color_Off"
     exit 1
 fi
 
-if [[ ! "$1" =~ $email_regex ]]; then
+if [[ ! "${requester}" =~ $email_regex ]]; then
     echo -e "${Yellow} The first argument must be a valid email address. $Color_Off"
     exit 1
 fi
 
-if [[ ! "$4" =~ $email_regex ]]; then
+if [[ ! "${u_escalated_by}" =~ $email_regex ]]; then
     echo -e "${Yellow} The fourth argument must be a valid email address. $Color_Off"
     exit 1
 fi
 
-if [[ ! "$5" =~ $email_regex ]]; then
+if [[ ! "${u_change_coordinator}" =~ $email_regex ]]; then
     echo -e "${Yellow} The fifth argument must be a valid email address. $Color_Off"
     exit 1
 fi
-if ! [[ "$7" =~ $datetime_regex ]] || ! [[ "$8" =~ $datetime_regex ]]; then
-    echo -e "${Yellow} The third and fourth arguments must be in datetime format (YYYY-MM-DD HH:MM:SS). $Color_Off"
+if ! [[ "$start_date_sec" =~ $datetime_regex ]] || ! [[ "$end_date_sec" =~ $datetime_regex ]]; then
+    echo -e "${Yellow} The third and fourth arguments must be in datetime format (YYYY-MM-DD HH:MM:SS). Yours is $start_date_sec and $end_date_sec $Color_Off"
     exit 1
 fi
 
-start_date_sec=${7}
-end_date_sec=${8}
-rtp_date=${start_date_sec%% *}
-uat_ctask_description=${9}
-impl_ctask_description=${10}
-approval_type=${11}
-wait_for=${12}
-reject_handling=${13}
-sla_category=${14}
-approver=${15}
-maintenance_window=${16}
-impacted_service=${17}
-impacted_business_unit=${18}
-change_tested=${19}
-implementation_risk=${20}
-skip_risk=${21}
-known_impact=${22}
-backout_planned=${23}
-backout_authority=${24}
-backout_groups=${25}
-trigger_for_backout=${26}
-duration_of_backout=${27}
-backout_plan=${28}
-security_classification=${29}
-security_regulation=${30}
-build_run_activity=${31}
-country_notified=${32}
-cmdb_ci=${33}
-username=${34}
-password=${35}
 # TODO Add to functions
-decrement_hour_by_two() {
+decrease_hour_by_two() {
     local date_str=$1
     local IFS=" :-"
     read -r year month day hour minute second <<< "$date_str"
@@ -93,16 +99,12 @@ decrement_hour_by_two() {
     printf "%04d-%02d-%02d %02d:%02d:%02d\n" "$year" "$month" "$day" "$hour" "$minute" "$second"
 }
 
-uat_start_date=$(decrement_hour_by_two "${7}")
-uat_end_date=$(decrement_hour_by_two "${8}")
+uat_start_date=$(decrease_hour_by_two "${start_date_sec}")
+uat_end_date=$(decrease_hour_by_two "${end_date_sec}")
 
-case "${36}" in
-    uat|UAT|Uat) environment="uat" ;;
-    prod|PROD|Prod) environment="prod" ;;
-    *) echo -e "${Red} Invalid environment. Use UAT or PROD. Current environment is ${13} $Color_Off"; exit 1 ;;
-esac
 start_date_sec_utc=$(date -d "$start_date_sec" +%s)
 end_date_sec_utc=$(date -d "$end_date_sec" +%s)
+
 if [ "$start_date_sec_utc" -ge "$end_date_sec_utc" ]; then
     echo -e "${Yellow} The start date must be earlier than the end date. $Color_Off"
     exit 1
@@ -115,13 +117,14 @@ echo -e "${Yellow} Starting RFC Ticket creation $Color_Off"
 xml_data=$(cat "/envelops/${environment}/rfc/create.xml")
 
 xml_data=$(echo "$xml_data" | sed \
-    -e "s|<short_description>[^<]*</short_description>|<short_description>Deploy using FastFRC ${rtp_date}</short_description>|g" \
-    -e "s|<description>[^<]*</description>|<description>$6</description>|g" \
-    -e "s|<u_requested_by>[^<]*</u_requested_by>|<u_requested_by>gsn_gapi@dhl.com</u_requested_by>|g" \
-    -e "s|<assignment_group>[^<]*</assignment_group>|<assignment_group>$2</assignment_group>|g" \
-    -e "s|<u_application_name>[^<]*</u_application_name>|<u_application_name>$3</u_application_name>|g" \
-    -e "s|<u_escalated_by>[^<]*</u_escalated_by>|<u_escalated_by>$4</u_escalated_by>|g" \
-    -e "s|<u_change_coordinator>[^<]*</u_change_coordinator>|<u_change_coordinator>$5</u_change_coordinator>|g" \
+    -e "s|<short_description>[^<]*</short_description>|<short_description>${title}</short_description>|g" \
+    -e "s|<description>[^<]*</description>|<description>${description}</description>|g" \
+    -e "s|<template>[^<]*</template>|<template>${template_number}</template>|g" \
+    -e "s|<u_requested_by>[^<]*</u_requested_by>|<u_requested_by>${requester}</u_requested_by>|g" \
+    -e "s|<assignment_group>[^<]*</assignment_group>|<assignment_group>${assignment_group}</assignment_group>|g" \
+    -e "s|<u_application_name>[^<]*</u_application_name>|<u_application_name>${u_application_name}</u_application_name>|g" \
+    -e "s|<u_escalated_by>[^<]*</u_escalated_by>|<u_escalated_by>${u_escalated_by}</u_escalated_by>|g" \
+    -e "s|<u_change_coordinator>[^<]*</u_change_coordinator>|<u_change_coordinator>${u_change_coordinator}</u_change_coordinator>|g" \
     -e "s|<start_date>[^<]*</start_date>|<start_date>${start_date_sec}</start_date>|g" \
     -e "s|<end_date>[^<]*</end_date>|<end_date>${end_date_sec}</end_date>|g" \
     -e "s|<u_customer_rtp_date>[^<]*</u_customer_rtp_date>|<u_customer_rtp_date>${rtp_date}</u_customer_rtp_date>|g" \
@@ -153,11 +156,11 @@ fi
 xml_data=$(cat "/envelops/${environment}/groupapprove/create.xml")
 
 xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<u_approval_type>[^<]*</u_approval_type>|<u_approval_type>${approval_type}</u_approval_type>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<u_approval_type>[^<]*</u_approval_type>|<u_approval_type>change_afi</u_approval_type>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<assignment_group>[^<]*</assignment_group>|<assignment_group>CAB-BIMODAL</assignment_group>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<wait_for>[^<]*</wait_for>|<wait_for>${wait_for}</wait_for>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<reject_handling>[^<]*</reject_handling>|<reject_handling>${reject_handling}</reject_handling>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<u_sla_category>[^<]*</u_sla_category>|<u_sla_category>${sla_category}</u_sla_category>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<wait_for>[^<]*</wait_for>|<wait_for>any</wait_for>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<reject_handling>[^<]*</reject_handling>|<reject_handling>reject</reject_handling>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<u_sla_category>[^<]*</u_sla_category>|<u_sla_category>2d</u_sla_category>|g")
 
 echo "$xml_data" > "/envelops/${environment}/groupapprove/create.xml"
 
@@ -186,17 +189,6 @@ print_response_envelope_attributes "approver" "create" "${environment}"
 update_xml_data "${environment}" "${TICKET_NUMBER}" "Registered" "${username}" "${password}"
 ################# End of updating to registered of the RFC ticket #################   
 
-# ################# Update to be approved for implementation of the RFC ticket #################
-# xml_data=$(cat "/envelops/${environment}/rfc/update.xml")
-
-# xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
-# xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state> </state>|g")
-
-# echo "$xml_data" > "/envelops/${environment}/rfc/update.xml"
-
-# bash  "/services/rfc/update_tbafi_rfc_ticket.sh" "${username}" "${password}" "${environment}"
-# ################# end of update to be approved for implementation of the RFC ticket #################
-
 ################# get CTask numbers #################
 xml_data=$(cat "/envelops/${environment}/rfc/read.xml")
 
@@ -205,16 +197,6 @@ xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<
 echo "$xml_data" > "/envelops/${environment}/rfc/read.xml"
 
 bash "/services/rfc/read_rfc_ticket.sh" "${username}" "${password}" "${environment}"
-# here we get 
-# <?xml version='1.0' encoding='UTF-8'?>
-# <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-# <SOAP-ENV:Body><getKeysResponse xmlns="https://servicenow.dhl.com/ns/change_task/">
-# <sys_id>2cdc352197ab71d082c01e800153aff8,50dc352197ab71d082c01e800153aff1,60dc752197ab71d082c01e800153af56</sys_id>
-# <count>3</count>
-# </getKeysResponse>
-# </SOAP-ENV:Body>
-# </SOAP-ENV:Envelope>
-
 
 sys_ids=$(sed -n 's|.*<sys_id>\(.*\)</sys_id>.*|\1|p' "/responses/${environment}/rfc/read_response.xml")
 
@@ -228,9 +210,6 @@ do
     echo "$ctask_data" > "/envelops/${environment}/ctask/read.xml"
     bash "/services/ctask/read_ctask.sh" "${username}" "${password}" "${environment}"
     response_data=$(cat "/responses/${environment}/ctask/read_response.xml")
-    # if  <u_task_type>uat</u_task_type> then assign uat_ctask_number to the value inside the <number>*</number>
-    # if  <u_task_type>pir</u_task_type> then assign pir_ctask_number to the value inside the <number>*</number>
-    # if  <u_task_type>implementation</u_task_type> then assign impl    _ctask_number to the value inside the <number>*</number>
     task_type=$(echo "$response_data" | sed -n 's|.*<u_task_type>\(.*\)</u_task_type>.*|\1|p')
     case $task_type in
         "uat")
@@ -259,7 +238,6 @@ xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${uat_ctask_number}</change_task>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>1</state>|g")
-# xml_data=$(echo "$xml_data" | sed -e "s|<due_date>[^<]*</due_date>|<due_date>${uat_end_date}</due_date>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${uat_end_date}</work_end>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${uat_start_date}</work_start>|g")
 
@@ -275,7 +253,6 @@ xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${uat_ctask_number}</change_task>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>110</state>|g")
-# xml_data=$(echo "$xml_data" | sed -e "s|<due_date>[^<]*</due_date>|<due_date>${uat_end_date}</due_date>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${uat_end_date}</work_end>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${uat_start_date}</work_start>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code>implemented</u_close_code>|g")
@@ -306,9 +283,8 @@ xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${impl_ctask_number}</change_task>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>1</state>|g")
-# xml_data=$(echo "$xml_data" | sed -e "s|<due_date>[^<]*</due_date>|<due_date>$8</due_date>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>$8</work_end>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>$7</work_start>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${end_date_sec}</work_end>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${start_date_sec}</work_start>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code></u_close_code>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes></close_notes>|g")
 
@@ -324,9 +300,8 @@ xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${impl_ctask_number}</change_task>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>110</state>|g")
-# xml_data=$(echo "$xml_data" | sed -e "s|<due_date>[^<]*</due_date>|<due_date>$8</due_date>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>$8</work_end>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>$7</work_start>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${end_date_sec}</work_end>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${start_date_sec}</work_start>|g")
 
 xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code>implemented</u_close_code>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes>implementation task has successfully implemented</close_notes>|g")
@@ -372,42 +347,14 @@ print_response_envelope_attributes "ctask" "update" "${environment}"
 # ################# End of updating to  completed pir CTask #################
 
 ################# Updating to RFC to review for Implementation #################   
-bash  "/services/rfc/review_rfc_ticket.sh" "${username}" "${password}" "${environment}"
-print_response_envelope_attributes "rfc" "update" "${environment}"
+# bash  "/services/rfc/review_rfc_ticket.sh" "${username}" "${password}" "${environment}"
+# print_response_envelope_attributes "rfc" "update" "${environment}"
 ################# End of Updating to RFC to Approved for Implementation #################   
 
 ################# Updating to RFC to closed #################   
-bash  "/services/rfc/close_rfc_ticket.sh" "${username}" "${password}" "${environment}"
-print_response_envelope_attributes "rfc" "update" "${environment}"
+# bash  "/services/rfc/close_rfc_ticket.sh" "${username}" "${password}" "${environment}"
+# print_response_envelope_attributes "rfc" "update" "${environment}"
 ################# End of Updating to RFC to closed #################   
-
-# xml_data=$(cat "/envelops/${environment}/rfc/update.xml")
-
-# xml_data=$(echo "$xml_data" | sed \
-# -e "s|<short_description>[^<]*</short_description>|<short_description>Deploy using FastFRC ${rtp_date}</short_description>|g" \
-# -e "s|<description>[^<]*</description>|<description>$6</description>|g" \
-# -e "s|<u_requested_by>[^<]*</u_requested_by>|<u_requested_by>$1</u_requested_by>|g" \
-# -e "s|<start_date>[^<]*</start_date>|<start_date>${start_date_sec}</start_date>|g" \
-# -e "s|<end_date>[^<]*</end_date>|<end_date>${end_date_sec}</end_date>|g" \
-# -e "s|<u_customer_rtp_date>[^<]*</u_customer_rtp_date>|<u_customer_rtp_date>${rtp_date}</u_customer_rtp_date>|g")
-
-# echo "$xml_data" > "/envelops/${environment}/rfc/update.xml"
-
-# # update_xml_data "${environment}" "${TICKET_NUMBER}" "Registered" "${username}" "${password}"
-# ################# End of updating to registered of the RFC script #################
-
-# ################# Updating to closure of the RFC ticket #################   
-# xml_data=$(cat "/envelops/${environment}/rfc/close.xml")
-
-# xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
-
-# echo "$xml_data" > "/envelops/${environment}/rfc/close.xml"
-
-# # bash  "/services/rfc/close_rfc_ticket.sh" "${username}" "${password}" "${environment}"
-
-# print_response_envelope_attributes "rfc" "close" "${environment}"
-# ################# End of updating to closure of the RFC script #################
-
 
 ################# Printing the output #################
 echo -e "$Green Finishing the RFC ticket... $Color_Off"

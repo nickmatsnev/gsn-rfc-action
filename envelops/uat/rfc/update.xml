@@ -3,12 +3,8 @@
 <soapenv:Body>
 <cchm:update>
 <change_request>RFC2365314</change_request>
-<short_description>testing this envelope</short_description>
-<description>test rfc gha</description>
 <u_requested_by>nikita.matsnev@dhl.com</u_requested_by>
-<start_date>2024-12-12 10:00:00 </start_date>
-<end_date>2024-12-12 11:00:00</end_date>
-<u_customer_rtp_date>2024-12-12</u_customer_rtp_date>
+<u_customer_rtp_date></u_customer_rtp_date>
 <state>110</state>
 </cchm:update>
 </soapenv:Body>
