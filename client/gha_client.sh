@@ -86,24 +86,24 @@ fi
 
 # TODO Add to functions
 decrease_hour_by_two() {
-    local date_str=$1
+    local date_str="$1"
     local IFS=" :-"
     read -r year month day hour minute second <<< "$date_str"
 
-    ((hour-=2))
+    hour=$((10#$hour - 2))
 
-    if [ $hour -lt 0 ]; then
+    if [ "$hour" -lt 0 ]; then
         hour=$((hour + 24))
     fi
 
     printf "%04d-%02d-%02d %02d:%02d:%02d\n" "$year" "$month" "$day" "$hour" "$minute" "$second"
 }
 
-uat_start_date=$(decrease_hour_by_two "${start_date_sec}")
-uat_end_date=$(decrease_hour_by_two "${end_date_sec}")
+uat_start_date=$(decrease_hour_by_two "$start_date_sec")
+uat_end_date=$(decrease_hour_by_two "$end_date_sec")
 
-start_date_sec_utc=$(date -d "$start_date_sec" +%s)
-end_date_sec_utc=$(date -d "$end_date_sec" +%s)
+start_date_sec_utc=$(date -d "$uat_start_date" +%s)
+end_date_sec_utc=$(date -d "$uat_end_date" +%s)
 
 if [ "$start_date_sec_utc" -ge "$end_date_sec_utc" ]; then
     echo -e "${Yellow} The start date must be earlier than the end date. $Color_Off"
@@ -238,8 +238,8 @@ xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${uat_ctask_number}</change_task>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>1</state>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${uat_end_date}</work_end>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${uat_start_date}</work_start>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${uat_end_date}</work_end>|g")
 
 echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
 bash  "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
@@ -264,7 +264,7 @@ bash  "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environme
 print_response_envelope_attributes "ctask" "update" "${environment}"
 ################# End of updating to assigned UAT CTask #################
 
-################# Updating to RFC to Approved for Implementation #################   
+################# Updating RFC to Approved for Implementation #################   
 xml_data=$(cat "/envelops/${environment}/rfc/update.xml")
 
 xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
