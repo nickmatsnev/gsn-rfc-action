@@ -19,15 +19,14 @@ name: Test action
 
 on:
   workflow_call:
-
 jobs:
-  test:
+  autorfc:
     name: Create RFC
-    uses: API-Developer-Portal/rfc_service@v4
+    uses: API-Developer-Portal/rfc_service@v5
     with:
       Email: 'name.surname@dhl.com'
-      AssignmentGroup: 'GLOBAL-GROUP'
-      ApplicationName: 'devportal'
+      AssignmentGroup: 'CAB-BIMODAL'
+      ApplicationName: 'appname'
       EscalatedBy: 'name.surname@dhl.com'
       ChangeCoordinator: 'name.surname@dhl.com'
       Title: 'deploy vx.x.x'
@@ -60,6 +59,13 @@ jobs:
 
 It is also important to change the content of the envelops per your choosing. There is a native automated selector which helps you to prefill the envelops through CLI, but if your requests are similar in their content, you can save the data in envelops and deactivate editing fields and add some script to only edit the desired field. Generally this is a handful sandbox with many possibilities and it wants **you** to extend it! Do not hesitate to fork the project and dive in and adjust the service as you wish, since it provides great SOAP CRUD capabilities for other GSN services, and not just GSN. I am planning to add custom environments, origins and endpoints, so you will be free to automate any process which involves SOAP!  
 
+
+#### What entities are available for operations?
+
+* Request for Change
+* Ctasks
+* Group approvals
+* Approvers
 
 ## 3. Developer Guide
 

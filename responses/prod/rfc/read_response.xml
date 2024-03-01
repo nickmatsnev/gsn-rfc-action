@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <SOAP-ENV:Body>
+      <getResponse xmlns="https://servicenow.dhl.com/ns/cchm_change_request_read/">
+         <active>1</active>
+         <activity_due />
+         <additional_assignee_list />
+         <approval>not requested</approval>
+         <approval_set />
+         <assigned_to />
+         <assignment_group>bc7c13bedbed9510f356fad3f39619fc</assignment_group>
+         <backout_plan>Failover/Fallback and Rollback to previous version</backout_plan>
+         <business_duration />
+         <business_service />
+         <cab_date_time />
+         <cab_delegate />
+         <cab_required>0</cab_required>
+         <calendar_duration />
+         <category>Release</category>
+         <chg_model />
+         <ci_class />
+         <close_code />
+         <close_notes />
+         <closed_at />
+         <closed_by />
+         <cmdb_ci />
+         <comments_and_work_notes />
+         <company />
+         <conflict_last_run />
+         <conflict_status>Not Run</conflict_status>
+         <contact_type />
+         <contract />
+         <correlation_display />
+         <correlation_id />
+         <delivery_plan />
+         <delivery_task />
+         <description>Info from Jenkins</description>
+         <due_date />
+         <end_date />
+         <escalation>0</escalation>
+         <expected_start />
+         <follow_up />
+         <group_list />
+         <impact>30</impact>
+         <implementation_plan />
+         <knowledge>0</knowledge>
+         <location />
+         <made_sla>1</made_sla>
+         <number>RFC2365359</number>
+         <on_hold>0</on_hold>
+         <on_hold_reason />
+         <on_hold_task />
+         <opened_at>2024-01-05 08:52:30</opened_at>
+         <opened_by>4e419a0e87326000f000675f2b434d58</opened_by>
+         <order>0</order>
+         <outside_maintenance_schedule>0</outside_maintenance_schedule>
+         <parent />
+         <priority>3</priority>
+         <proposed_change />
+         <reason>enhancement_business_requirement</reason>
+         <reassignment_count>0</reassignment_count>
+         <risk>4</risk>
+         <risk_impact_analysis />
+         <risk_value>0</risk_value>
+         <route_reason>0</route_reason>
+         <service_offering />
+         <short_description>BiModal - Fast RFC - GROUP API DEVELOPER PORTAL</short_description>
+         <skills />
+         <sla_due />
+         <start_date />
+         <state>10</state>
+         <sys_class_name>change_request</sys_class_name>
+         <sys_created_by>tkathirk</sys_created_by>
+         <sys_created_on>2024-01-05 08:52:30</sys_created_on>
+         <sys_domain>global</sys_domain>
+         <sys_id>d4dc712d972f75105eeb33371153af01</sys_id>
+         <sys_mod_count>1</sys_mod_count>
+         <sys_updated_by>tkathirk</sys_updated_by>
+         <sys_updated_on>2024-01-05 08:52:31</sys_updated_on>
+         <task_effective_number>RFC2365359</task_effective_number>
+         <test_plan />
+         <time_worked />
+         <type>preauthorized</type>
+         <u_acceptance_criteria>Application Binaries and New verison update are released, RTP-ed Successfully and tested fine by application team</u_acceptance_criteria>
+         <u_affected_cis>065e24621b23155c6bab40c69b4bcb3a</u_affected_cis>
+         <u_afi_at />
+         <u_afi_comments_list />
+         <u_afi_conditions />
+         <u_afi_risks />
+         <u_aip_at />
+         <u_aip_comments_list />
+         <u_aip_conditions />
+         <u_aip_risks />
+         <u_anticipated_impact_on_the_ne />
+         <u_appl__interfaces_choice>No</u_appl__interfaces_choice>
+         <u_application_interfaces />
+         <u_application_name />
+         <u_application_type />
+         <u_application_version />
+         <u_approval_for_implementation>not requested</u_approval_for_implementation>
+         <u_approval_in_principle>not requested</u_approval_in_principle>
+         <u_archive_state>1</u_archive_state>
+         <u_archived>0</u_archived>
+         <u_authentication_ldap />
+         <u_authorized_group />
+         <u_backend_services />
+         <u_backout_authority>d5411eca87326000f000675f2b434df4</u_backout_authority>
+         <u_backout_groups>f7cad4e1db9ecd50164b92c4f396191d</u_backout_groups>
+         <u_backout_planned>Yes</u_backout_planned>
+         <u_build_run_activity>BUILD</u_build_run_activity>
+         <u_buit_owner />
+         <u_cab_agenda>0</u_cab_agenda>
+         <u_cause_service />
+         <u_change_coordinator_list />
+         <u_change_stage>change_initiation</u_change_stage>
+         <u_change_template>0</u_change_template>
+         <u_change_tested>Yes</u_change_tested>
+         <u_change_workflow />
+         <u_client_services />
+         <u_close_code />
+         <u_cmdb_update>yes</u_cmdb_update>
+         <u_cost_center_no />
+         <u_countries>03966d7be948b000b150f920e3680a81,03966d7be948b000b150f920e3680a84,03966d7be948b000b150f920e3680a87,03966d7be948b000b150f920e3680a8a,03966d7be948b000b150f920e3680a8d,07966d7be948b000b150f920e3680a83,07966d7be948b000b150f920e3680a86,07966d7be948b000b150f920e3680a89,07966d7be948b000b150f920e3680a8c,07966d7be948b000b150f920e3680a8f,0b966d7be948b000b150f920e3680a82,0b966d7be948b000b150f920e3680a85,0b966d7be948b000b150f920e3680a88,0b966d7be948b000b150f920e3680a8b,0b966d7be948b000b150f920e3680a8e,0f966d7be948b000b150f920e3680a81,0f966d7be948b000b150f920e3680a84,0f966d7be948b000b150f920e3680a87,0f966d7be948b000b150f920e3680a8a,0f966d7be948b000b150f920e3680a8d,109525f7e948b000b150f920e3680a55,149525f7e948b000b150f920e3680a54,149525f7e948b000b150f920e3680a57,189525f7e948b000b150f920e3680a53,189525f7e948b000b150f920e3680a56,1c9525f7e948b000b150f920e3680a55,232c59a2dba353c8ec84ff461d9619f7,272c59a2dba353c8ec84ff461d9619f8,3295617be948b000b150f920e3680a13,3295617be948b000b150f920e3680a16,3296297be948b000b150f920e3680acb,3296297be948b000b150f920e3680ace,3296297be948b000b150f920e3680ad1,3296297be948b000b150f920e3680ad4,3296297be948b000b150f920e3680ae4,3296ad3be948b000b150f920e3680a09,34bb212ddb6123085138f9d10f9619f1,3695617be948b000b150f920e3680a12,3695617be948b000b150f920e3680a15,3696297be948b000b150f920e3680acd,3696297be948b000b150f920e3680ad0,3696297be948b000b150f920e3680ad3,3696297be948b000b150f920e3680ae3,36966d7be948b000b150f920e3680a80,3696ad3be948b000b150f920e3680a08,3696ad3be948b000b150f920e3680a0b,3a95617be948b000b150f920e3680a14,3a95617be948b000b150f920e3680a17,3a96297be948b000b150f920e3680ac9,3a96297be948b000b150f920e3680acc,3a96297be948b000b150f920e3680acf,3a96297be948b000b150f920e3680ad2,3a96297be948b000b150f920e3680ae2,3a966d7be948b000b150f920e3680a7f,3a96ad3be948b000b150f920e3680a0a,3e95617be948b000b150f920e3680a13,3e95617be948b000b150f920e3680a16,3e96297be948b000b150f920e3680acb,3e96297be948b000b150f920e3680ace,3e96297be948b000b150f920e3680ad1,3e96297be948b000b150f920e3680ad4,3e96297be948b000b150f920e3680ae1,3e96297be948b000b150f920e3680ae4,3e96ad3be948b000b150f920e3680a09,43966d7be948b000b150f920e3680a83,43966d7be948b000b150f920e3680a86,43966d7be948b000b150f920e3680a89,43966d7be948b000b150f920e3680a8c,43966d7be948b000b150f920e3680a8f,47966d7be948b000b150f920e3680a82,47966d7be948b000b150f920e3680a85,47966d7be948b000b150f920e3680a88,47966d7be948b000b150f920e3680a8b,47966d7be948b000b150f920e3680a8e,4b966d7be948b000b150f920e3680a81,4b966d7be948b000b150f920e3680a84,4b966d7be948b000b150f920e3680a87,4b966d7be948b000b150f920e3680a8a,4b966d7be948b000b150f920e3680a8d,4f966d7be948b000b150f920e3680a83,4f966d7be948b000b150f920e3680a86,4f966d7be948b000b150f920e3680a89,4f966d7be948b000b150f920e3680a8c,509525f7e948b000b150f920e3680a54,509525f7e948b000b150f920e3680a57,549525f7e948b000b150f920e3680a53,549525f7e948b000b150f920e3680a56,589525f7e948b000b150f920e3680a55,5c9525f7e948b000b150f920e3680a54,672c59a2dba353c8ec84ff461d9619f7,6b2c59a2dba353c8ec84ff461d9619f8,7295617be948b000b150f920e3680a15,7296297be948b000b150f920e3680aca,7296297be948b000b150f920e3680acd,7296297be948b000b150f920e3680ad0,7296297be948b000b150f920e3680ad3,7296297be948b000b150f920e3680ae3,72966d7be948b000b150f920e3680a80,7296ad3be948b000b150f920e3680a08,7296ad3be948b000b150f920e3680a0b,7695617be948b000b150f920e3680a14,7695617be948b000b150f920e3680a17,7696297be948b000b150f920e3680acc,7696297be948b000b150f920e3680acf,7696297be948b000b150f920e3680ad2,7696297be948b000b150f920e3680ae2,76966d7be948b000b150f920e3680a7f,7696ad3be948b000b150f920e3680a0a,7a95617be948b000b150f920e3680a13,7a95617be948b000b150f920e3680a16,7a96297be948b000b150f920e3680acb,7a96297be948b000b150f920e3680ace,7a96297be948b000b150f920e3680ad1,7a96297be948b000b150f920e3680ad4,7a96297be948b000b150f920e3680ae1,7a96297be948b000b150f920e3680ae4,7a96ad3be948b000b150f920e3680a09,7e95617be948b000b150f920e3680a12,7e95617be948b000b150f920e3680a15,7e96297be948b000b150f920e3680aca,7e96297be948b000b150f920e3680acd,7e96297be948b000b150f920e3680ad0,7e96297be948b000b150f920e3680ad3,7e96297be948b000b150f920e3680ae3,7e966d7be948b000b150f920e3680a80,7e96ad3be948b000b150f920e3680a08,7e96ad3be948b000b150f920e3680a0b,83966d7be948b000b150f920e3680a82,83966d7be948b000b150f920e3680a85,83966d7be948b000b150f920e3680a88,83966d7be948b000b150f920e3680a8b,83966d7be948b000b150f920e3680a8e,87966d7be948b000b150f920e3680a81,87966d7be948b000b150f920e3680a84,87966d7be948b000b150f920e3680a87,87966d7be948b000b150f920e3680a8a,87966d7be948b000b150f920e3680a8d,8aa9e4cb2d25cd00d528a7b58560f2cd,8b966d7be948b000b150f920e3680a83,8b966d7be948b000b150f920e3680a86,8b966d7be948b000b150f920e3680a89,8b966d7be948b000b150f920e3680a8c,8b966d7be948b000b150f920e3680a8f,8f966d7be948b000b150f920e3680a82,8f966d7be948b000b150f920e3680a85,8f966d7be948b000b150f920e3680a88,8f966d7be948b000b150f920e3680a8b,8f966d7be948b000b150f920e3680a8e,909525f7e948b000b150f920e3680a56,93e1e369db159b0c627bf9971d961946,949525f7e948b000b150f920e3680a55,989525f7e948b000b150f920e3680a54,9c9525f7e948b000b150f920e3680a53,9c9525f7e948b000b150f920e3680a56,ab2c59a2dba353c8ec84ff461d9619f7,ad94e93be948b000b150f920e3680ad3,b295617be948b000b150f920e3680a14,b295617be948b000b150f920e3680a17,b296297be948b000b150f920e3680acc,b296297be948b000b150f920e3680acf,b296297be948b000b150f920e3680ad2,b296297be948b000b150f920e3680ae2,b2966d7be948b000b150f920e3680a7f,b296ad3be948b000b150f920e3680a0a,b695617be948b000b150f920e3680a13,b695617be948b000b150f920e3680a16,b696297be948b000b150f920e3680acb,b696297be948b000b150f920e3680ace,b696297be948b000b150f920e3680ad1,b696297be948b000b150f920e3680ad4,b696297be948b000b150f920e3680ae4,b696ad3be948b000b150f920e3680a09,ba14d893db797e046cf6f9771d9619b2,ba95617be948b000b150f920e3680a12,ba95617be948b000b150f920e3680a15,ba96297be948b000b150f920e3680aca,ba96297be948b000b150f920e3680acd,ba96297be948b000b150f920e3680ad0,ba96297be948b000b150f920e3680ad3,ba96297be948b000b150f920e3680ae3,ba966d7be948b000b150f920e3680a80,ba96ad3be948b000b150f920e3680a08,ba96ad3be948b000b150f920e3680a0b,be82adb7e948b000b150f920e3680aa7,be95617be948b000b150f920e3680a14,be96297be948b000b150f920e3680ac9,be96297be948b000b150f920e3680acc,be96297be948b000b150f920e3680acf,be96297be948b000b150f920e3680ad2,be96297be948b000b150f920e3680ae2,be966d7be948b000b150f920e3680a7f,be96ad3be948b000b150f920e3680a0a,c3966d7be948b000b150f920e3680a81,c3966d7be948b000b150f920e3680a84,c3966d7be948b000b150f920e3680a87,c3966d7be948b000b150f920e3680a8a,c3966d7be948b000b150f920e3680a8d,c7966d7be948b000b150f920e3680a83,c7966d7be948b000b150f920e3680a86,c7966d7be948b000b150f920e3680a89,c7966d7be948b000b150f920e3680a8c,c7966d7be948b000b150f920e3680a8f,c9ff659c6f8069043d92396cff3ee435,cb966d7be948b000b150f920e3680a82,cb966d7be948b000b150f920e3680a85,cb966d7be948b000b150f920e3680a88,cb966d7be948b000b150f920e3680a8b,cb966d7be948b000b150f920e3680a8e,cd938d10788d8e84b3e1d0dbb3774858,cf966d7be948b000b150f920e3680a81,cf966d7be948b000b150f920e3680a84,cf966d7be948b000b150f920e3680a87,cf966d7be948b000b150f920e3680a8a,cf966d7be948b000b150f920e3680a8d,d09525f7e948b000b150f920e3680a55,d49525f7e948b000b150f920e3680a54,d49525f7e948b000b150f920e3680a57,d89525f7e948b000b150f920e3680a53,d89525f7e948b000b150f920e3680a56,dc9525f7e948b000b150f920e3680a55,e34fbba5a9e05584b32ac9299cf59104,e994e93be948b000b150f920e3680ad3,eb2c59a2dba353c8ec84ff461d9619f6,ef2c59a2dba353c8ec84ff461d9619f7,f295617be948b000b150f920e3680a13,f295617be948b000b150f920e3680a16,f296297be948b000b150f920e3680acb,f296297be948b000b150f920e3680ace,f296297be948b000b150f920e3680ad1,f296297be948b000b150f920e3680ad4,f296297be948b000b150f920e3680ae4,f296ad3be948b000b150f920e3680a09,f695617be948b000b150f920e3680a12,f695617be948b000b150f920e3680a15,f696297be948b000b150f920e3680aca,f696297be948b000b150f920e3680acd,f696297be948b000b150f920e3680ad0,f696297be948b000b150f920e3680ad3,f696297be948b000b150f920e3680ae3,f6966d7be948b000b150f920e3680a80,f696ad3be948b000b150f920e3680a08,f696ad3be948b000b150f920e3680a0b,fa82adb7e948b000b150f920e3680aa7,fa95617be948b000b150f920e3680a14,fa95617be948b000b150f920e3680a17,fa96297be948b000b150f920e3680ac9,fa96297be948b000b150f920e3680acc,fa96297be948b000b150f920e3680acf,fa96297be948b000b150f920e3680ad2,fa96297be948b000b150f920e3680ae2,fa966d7be948b000b150f920e3680a7f,fa96ad3be948b000b150f920e3680a0a,fe95617be948b000b150f920e3680a13,fe95617be948b000b150f920e3680a16,fe96297be948b000b150f920e3680acb,fe96297be948b000b150f920e3680ace,fe96297be948b000b150f920e3680ad1,fe96297be948b000b150f920e3680ad4,fe96297be948b000b150f920e3680ae1,fe96297be948b000b150f920e3680ae4,fe96ad3be948b000b150f920e3680a09</u_countries>
+         <u_country_notified>Yes</u_country_notified>
+         <u_currency>EUR</u_currency>
+         <u_customer_rtp_date />
+         <u_data_exchange>No</u_data_exchange>
+         <u_data_exchange_details />
+         <u_date_worked />
+         <u_deviations_to_global_its>No</u_deviations_to_global_its>
+         <u_deviations_to_telecoms_infra>No</u_deviations_to_telecoms_infra>
+         <u_dpdhlot_object />
+         <u_duration_of_backout>5 min or less</u_duration_of_backout>
+         <u_e2e_suspended_until />
+         <u_e2e_suspension>0</u_e2e_suspension>
+         <u_effort_service />
+         <u_emergency_code />
+         <u_environment_ready />
+         <u_escalated_by />
+         <u_escalation_path>PRIM Solution Support</u_escalation_path>
+         <u_external_id />
+         <u_external_links_requests />
+         <u_external_owners>0</u_external_owners>
+         <u_external_system />
+         <u_financial_impact />
+         <u_firewall_details />
+         <u_followup_contact />
+         <u_from_template>e701ec284727b1108e26d1c5536d430e</u_from_template>
+         <u_has_attachment>0</u_has_attachment>
+         <u_hpsd_actual_start />
+         <u_hpsd_caa_number />
+         <u_hpsd_comments />
+         <u_hpsd_country_region />
+         <u_hpsd_created_on />
+         <u_hpsd_deadline />
+         <u_hpsd_decision_level />
+         <u_hpsd_estimated_effort_eur />
+         <u_hpsd_estimated_effort_md>0</u_hpsd_estimated_effort_md>
+         <u_hpsd_financial_r_i_eur />
+         <u_hpsd_folder />
+         <u_hpsd_funded>0</u_hpsd_funded>
+         <u_hpsd_metastorm_folder />
+         <u_hpsd_oid />
+         <u_hpsd_opportunity_no />
+         <u_hpsd_project_code />
+         <u_hpsd_quotation_no />
+         <u_hpsd_solution />
+         <u_hpsd_template_name />
+         <u_hpsd_template_oid />
+         <u_hpsd_updated_on />
+         <u_hpsd_urgency />
+         <u_impact_if_not_implemented />
+         <u_impacted_business_unit>fe1643b2e9487000b150f920e3680a40</u_impacted_business_unit>
+         <u_impacted_countries />
+         <u_impacted_environment>Existing Hardware</u_impacted_environment>
+         <u_impacted_service>8456f4151bd51c54a27698a98b4bcb38</u_impacted_service>
+         <u_impacted_services>8456f4151bd51c54a27698a98b4bcb38</u_impacted_services>
+         <u_impacted_solution />
+         <u_implementation_risk>Deployments are all done automatically without any manual task execution.</u_implementation_risk>
+         <u_incident_priority_max />
+         <u_informed_at />
+         <u_internal_order_number />
+         <u_issue_since />
+         <u_its_registered>0</u_its_registered>
+         <u_its_release />
+         <u_justification>There is no downtime required for deployment on Openshift</u_justification>
+         <u_known_impact>User will not experience any downtime during the deployment</u_known_impact>
+         <u_lead_bu />
+         <u_maintenance_conflict>0</u_maintenance_conflict>
+         <u_maintenance_window>outside</u_maintenance_window>
+         <u_nas_storage />
+         <u_no_backout_reason />
+         <u_no_test_reason />
+         <u_notification_justification />
+         <u_notification_list>PRIM Solution Support</u_notification_list>
+         <u_planned_cost>0</u_planned_cost>
+         <u_post_implementation_support>PRIM Solution Support</u_post_implementation_support>
+         <u_previously_tested />
+         <u_problem_id />
+         <u_process_policy />
+         <u_proj_id />
+         <u_reason_for_urgency />
+         <u_reason_replanned />
+         <u_recovery_time />
+         <u_regions>5360acf4db193fc40b4650d3dc9619bf,1b549e853d31300035b5be1edc3c9950,725068f4db193fc40b4650d3dc9619e5,2850a8f4db193fc40b4650d3dc9619ed,01606cf4db193fc40b4650d3dc9619d8</u_regions>
+         <u_regulation_details />
+         <u_rejected_at />
+         <u_release />
+         <u_report_exclusion />
+         <u_requested_by>4e419a0e87326000f000675f2b434d58</u_requested_by>
+         <u_requires_firewall>No</u_requires_firewall>
+         <u_rtp_coordinator>6e219c0b2bc35500b3e19bfb27da155d</u_rtp_coordinator>
+         <u_sap_build_sales_order_number />
+         <u_sap_run_sales_order_number />
+         <u_security_classification>For Internal Use</u_security_classification>
+         <u_security_description />
+         <u_security_documentation />
+         <u_security_exemptions />
+         <u_security_regulation>No</u_security_regulation>
+         <u_security_requirements />
+         <u_security_review>No</u_security_review>
+         <u_security_risks />
+         <u_security_standard_compliant>Yes</u_security_standard_compliant>
+         <u_security_standard_details />
+         <u_service_account_manager />
+         <u_service_acronyms />
+         <u_service_allocation />
+         <u_service_availability />
+         <u_service_delivery_manager />
+         <u_service_impact />
+         <u_service_location />
+         <u_service_name />
+         <u_service_outage>dcdc712d972f75105eeb33371153af01</u_service_outage>
+         <u_service_outage_during_backou>no</u_service_outage_during_backou>
+         <u_service_owner />
+         <u_service_provider_location />
+         <u_service_short_description />
+         <u_service_type />
+         <u_site />
+         <u_skip_risk>PRIM functionality and capability will not meet business demand and need.</u_skip_risk>
+         <u_sponsor />
+         <u_spot_quote_number />
+         <u_subcategory>Further System Development</u_subcategory>
+         <u_support_model />
+         <u_support_responsibilities />
+         <u_support_times />
+         <u_suspend_counter>0</u_suspend_counter>
+         <u_sw_defect>0</u_sw_defect>
+         <u_template />
+         <u_template_active>0</u_template_active>
+         <u_template_name />
+         <u_time_worked />
+         <u_time_worked_total />
+         <u_trigger_for_backout>If changes is not working as expected.</u_trigger_for_backout>
+         <u_used_by_bu />
+         <u_vendors />
+         <u_warranty_task />
+         <unauthorized>0</unauthorized>
+         <universal_request />
+         <upon_approval>proceed</upon_approval>
+         <upon_reject>cancel</upon_reject>
+         <urgency>3</urgency>
+         <user_input />
+         <watch_list />
+         <work_end />
+         <work_notes_list />
+         <work_start />
+      </getResponse>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
