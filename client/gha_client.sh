@@ -15,20 +15,6 @@ source "/functions/print_envelope_attributes.sh"
 source "/functions/print_response_envelope_attributes.sh"
 source "/functions/save_output.sh"
 source "/functions/update_xml_data.sh"
-
-increment_hour() {
-    local date_str=$1
-    local IFS=" :-"
-    read -r year month day hour minute second <<< "$date_str"
-
-    ((hour+=1))
-
-    if [ $hour -gt 24 ]; then
-        hour=$((hour - 24))
-    fi
-
-    printf "%04d-%02d-%02d %02d:%02d:%02d\n" "$year" "$month" "$day" "$hour" "$minute" "$second"
-}
 ################# End of functions #################
 
 ################# Check if the arguments are set correctly #################
@@ -39,9 +25,11 @@ u_escalated_by=${4}
 u_change_coordinator=${5}
 title=${6}
 description=${7}
-current_datetime=$(date "+%Y-%m-%d %H:%M:%S")
-start_date_sec=$(increment_hour "${current_datetime}")
-end_date_sec=$(increment_hour "${start_date_sec}")
+current_timestamp=$(date +"%s")
+one_hour_from_now_timestamp=$((current_timestamp + (60 * 60)))
+two_hours_from_now_timestamp=$((current_timestamp + (2 * 60 * 60)))
+start_date_sec=$(date -d "@$one_hour_from_now_timestamp" +"%Y-%m-%d %H:%M:%S")
+end_date_sec=$(date -d "@$two_hours_from_now_timestamp" +"%Y-%m-%d %H:%M:%S")
 rtp_date=${start_date_sec%% *}
 approver=${8}
 template_number=${9}
