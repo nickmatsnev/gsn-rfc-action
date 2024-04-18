@@ -45,6 +45,10 @@ inputs:
     description: 'Deployment environment'
     required: true
     type: string
+  Date:
+    description: 'Date of RFC'
+    required: true
+    type: string
     
 runs:
   using: 'docker'
@@ -62,3 +66,4 @@ runs:
     - '"${{ inputs.Username }}"'
     - '"${{ inputs.Password }}"'
     - '"${{ inputs.Environment }}"'
+    - '"${{ inputs.Date }}"'

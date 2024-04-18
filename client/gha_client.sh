@@ -25,9 +25,19 @@ u_escalated_by=${4}
 u_change_coordinator=${5}
 title=${6}
 description=${7}
-current_timestamp=$(date +"%s")
+given_time=${13}
+day=$(echo "$given_time" | cut -d'-' -f1)
+month=$(echo "$given_time" | cut -d'-' -f2)
+year=$(echo "$given_time" | cut -d'-' -f3 | cut -d' ' -f1)
+time=$(echo "$given_time" | cut -d' ' -f2)
+formatted_date="$year-$month-$day $time"
+current_timestamp=$(date -d "$formatted_date" +"%s")
 one_hour_from_now_timestamp=$((current_timestamp + (60 * 60)))
 two_hours_from_now_timestamp=$((current_timestamp + (2 * 60 * 60)))
+three_hours_from_now_timestamp=$((current_timestamp + (3 * 60 * 60)))
+four_hours_from_now_timestamp=$((current_timestamp + (4 * 60 * 60)))
+pir_start_date=$(date -d "@$three_hours_from_now_timestamp" +"%Y-%m-%d %H:%M:%S")
+pir_end_date=$(date -d "@$four_hours_from_now_timestamp" +"%Y-%m-%d %H:%M:%S")
 start_date_sec=$(date -d "@$one_hour_from_now_timestamp" +"%Y-%m-%d %H:%M:%S")
 end_date_sec=$(date -d "@$two_hours_from_now_timestamp" +"%Y-%m-%d %H:%M:%S")
 rtp_date=${start_date_sec%% *}
@@ -46,7 +56,7 @@ email_regex="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
 
 datetime_regex="^([0-9]{4})-([0-9]{2})-([0-9]{2}) ([0-9]{2}):([0-9]{2}):([0-9]{2})$"
 
-if [ "$#" -ne 12 ]; then
+if [ "$#" -ne 13 ]; then
     echo -e "${Yellow} Incorrect number of arguments. Usage: $0 [requester] [assignment_group] [u_application_name] [u_escalated_by] [u_change_coordinator] [title] [description] [approver] [template] [username] [password] [environment] $Color_Off"
 
     echo -e "${Yellow} You have entered $# parameters $Color_Off"
@@ -308,8 +318,8 @@ xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change
 xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>1</state>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<due_date>[^<]*</due_date>|<due_date> </due_date>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end> </work_end>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start> </work_start>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${pir_end_date}</work_end>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${pir_start_date}</work_start>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code></u_close_code>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes></close_notes>|g")
 echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
@@ -325,8 +335,8 @@ xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change
 xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<change_request>${TICKET_NUMBER}</change_request>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>110</state>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<due_date>[^<]*</due_date>|<due_date> </due_date>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end> </work_end>|g")
-xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start> </work_start>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${pir_end_date}</work_end>|g")
+xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${pir_start_date}</work_start>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code>implemented</u_close_code>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes>post implementation review task has successfully implemented and passed</close_notes>|g")
 echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
