@@ -10,7 +10,7 @@ inputs:
     description: 'Your e-mail'
     required: true
   AssignmentGroup:
-    description: 'e.g. RFC2365314'
+    description: 'e.g. RFC1829050'
     required: true
   ApplicationName:
     description: 'e.g. devportal'
@@ -45,6 +45,10 @@ inputs:
     description: 'Deployment environment'
     required: true
     type: string
+  Date:
+    description: 'Date of RFC'
+    required: true
+    type: string
     
 runs:
   using: 'docker'
@@ -62,3 +66,4 @@ runs:
     - '"${{ inputs.Username }}"'
     - '"${{ inputs.Password }}"'
     - '"${{ inputs.Environment }}"'
+    - '"${{ inputs.Date }}"'

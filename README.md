@@ -36,7 +36,7 @@ jobs:
       Username: '${secrets.username}'
       Password: '${secrets.password}'
       Environment: 'uat'
-
+      Date: '24-04-2024 10:00:00'
 ```
 
 ### 2.2. Manual usage
