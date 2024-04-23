@@ -1,4 +1,4 @@
-FROM kfp-components-docker-dev-local.artifactory.dhl.com/alpine:latest
+FROM alpine:latest
 
 RUN apk add --no-cache bash pcre grep curl
 

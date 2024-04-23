@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
    <SOAP-ENV:Body>
-      <getResponse xmlns="https://servicenow.dhl.com/ns/cchm_change_request_read/">
+      <getResponse xmlns="https://servicenow.company-name.com/ns/cchm_change_request_read/">
          <active>1</active>
          <activity_due />
          <additional_assignee_list />
@@ -129,7 +129,7 @@
          <u_date_worked />
          <u_deviations_to_global_its>No</u_deviations_to_global_its>
          <u_deviations_to_telecoms_infra>No</u_deviations_to_telecoms_infra>
-         <u_dpdhlot_object />
+         <u_dpcompany-nameot_object />
          <u_duration_of_backout>5 min or less</u_duration_of_backout>
          <u_e2e_suspended_until />
          <u_e2e_suspension>0</u_e2e_suspension>

@@ -1,11 +1,11 @@
-<soapenv:Envelope xmlns:soapenv="/globals/schema.xml" xmlns:cchm="https://servicenow.dhl.com/ns/cchm_change_request_create/">
+<soapenv:Envelope xmlns:soapenv="/globals/schema.xml" xmlns:cchm="https://servicenow.company-name.com/ns/cchm_change_request_create/">
 <soapenv:Header/>
 <soapenv:Body>
 <cchm:insert>
 <template>RFC1829050</template>
 <short_description>testing this envelope</short_description>
 <description>test rfc gha</description>
-<u_requested_by>nikita.matsnev@dhl.com</u_requested_by>
+<u_requested_by>nikita.matsnev@company-name.com</u_requested_by>
 <start_date>2024-12-12 10:00:00</start_date>
 <end_date>2024-12-12 11:00:00</end_date>
 <u_customer_rtp_date>2024-12-12</u_customer_rtp_date>

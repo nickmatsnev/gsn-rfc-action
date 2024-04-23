@@ -1,4 +1,4 @@
-<soapenv:Envelope xmlns:soapenv="/globals/schema.xml" xmlns:cchm="https://servicenow.dhl.com/ns/cchm_change_request_update/">
+<soapenv:Envelope xmlns:soapenv="/globals/schema.xml" xmlns:cchm="https://servicenow.company-name.com/ns/cchm_change_request_update/">
 <soapenv:Header/>
 <soapenv:Body>
 <cchm:update>
@@ -14,7 +14,7 @@
 <u_skip_risk>Skip text</u_skip_risk>
 <u_known_impact>Sth not happened</u_known_impact>
 <u_backout_planned>Yes</u_backout_planned>
-<u_backout_authority>igor.nemykin@dhl.com</u_backout_authority>
+<u_backout_authority>igor.nemykin@company-name.com</u_backout_authority>
 <u_backout_groups>GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL</u_backout_groups>
 <u_trigger_for_backout>not deployed</u_trigger_for_backout>
 <u_duration_of_backout>1min</u_duration_of_backout>

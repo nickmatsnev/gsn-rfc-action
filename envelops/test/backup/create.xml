@@ -1,15 +1,15 @@
-<soapenv:Envelope xmlns:soapenv="/globals/schema.xml" xmlns:cchm="https://servicenow.dhl.com/ns/cchm_change_request_create/">
+<soapenv:Envelope xmlns:soapenv="/globals/schema.xml" xmlns:cchm="https://servicenow.company-name.com/ns/cchm_change_request_create/">
 <soapenv:Header/>
 <soapenv:Body>
 <cchm:insert>
 <template></template>
 <short_description>This is tested creation RFC</short_description>
-<u_requested_by>nikita.matsnev@dhl.com</u_requested_by>
+<u_requested_by>nikita.matsnev@company-name.com</u_requested_by>
 <assignment_group>GLOBAL-GROUP-API.SUPPORT.DEVELOPER-PORTAL</assignment_group>
-<u_change_coordinator>ondrej.sztacho@dhl.com</u_change_coordinator>
+<u_change_coordinator>ondrej.sztacho@company-name.com</u_change_coordinator>
 <priority>4</priority>
 <type>minor</type>
-<u_escalated_by>saina.bayat@dhl.com</u_escalated_by>
+<u_escalated_by>saina.bayat@company-name.com</u_escalated_by>
 <category>Release</category>
 <u_subcategory>Configuration</u_subcategory>
 <start_date>2024-10-10 12:00:00</start_date>

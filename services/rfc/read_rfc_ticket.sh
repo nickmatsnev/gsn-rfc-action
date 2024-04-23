@@ -10,14 +10,14 @@ PASSWORD=$2
 ENV=$3
 
 case $ENV in
-    uat|UAT|Uat) URL="https://soap.servicenow-uat.dhl.com/change_task.do?SOAP" ;;
-    prod|PROD|Prod) URL="https://soap.servicenow.dhl.com/change_task.do?SOAP" ;;
+    uat|UAT|Uat) URL="https://soap.servicenow-uat.company-name.com/change_task.do?SOAP" ;;
+    prod|PROD|Prod) URL="https://soap.servicenow.company-name.com/change_task.do?SOAP" ;;
     *) echo "Invalid env, we only support [uat|prod]"; exit 1 ;;
 esac
 
 # case $ENV in
-#     uat|UAT|Uat) WSDL_URL="https://soap.servicenow-uat.dhl.com/change_task.do?WSDL" ;;
-#     prod|PROD|Prod) WSDL_URL="https://soap.servicenow.dhl.com/change_task.do?WSDL" ;;
+#     uat|UAT|Uat) WSDL_URL="https://soap.servicenow-uat.company-name.com/change_task.do?WSDL" ;;
+#     prod|PROD|Prod) WSDL_URL="https://soap.servicenow.company-name.com/change_task.do?WSDL" ;;
 #     *) echo "Invalid env, we only support [uat|prod]"; exit 1 ;;
 # esac
 
@@ -33,7 +33,7 @@ curl -X POST ${URL} \
 # good response:
 # <?xml version='1.0' encoding='UTF-8'?>
 # <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-# <SOAP-ENV:Body><getKeysResponse xmlns="https://servicenow.dhl.com/ns/change_task/">
+# <SOAP-ENV:Body><getKeysResponse xmlns="https://servicenow.company-name.com/ns/change_task/">
 # <sys_id>2cdc352197ab71d082c01e800153aff8,50dc352197ab71d082c01e800153aff1,60dc752197ab71d082c01e800153af56</sys_id>
 # <count>3</count>
 # </getKeysResponse>

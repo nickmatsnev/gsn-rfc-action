@@ -1,9 +1,9 @@
-<soapenv:Envelope xmlns:soapenv="/globals/schema.xml" xmlns:cchm="https://servicenow.dhl.com/ns/cchm_change_request_update/">
+<soapenv:Envelope xmlns:soapenv="/globals/schema.xml" xmlns:cchm="https://servicenow.company-name.com/ns/cchm_change_request_update/">
 <soapenv:Header/>
 <soapenv:Body>
 <cchm:update>
 <change_request>RFC1829050</change_request>
-<u_requested_by>nikita.matsnev@dhl.com</u_requested_by>
+<u_requested_by>nikita.matsnev@company-name.com</u_requested_by>
 <u_customer_rtp_date></u_customer_rtp_date>
 <state>110</state>
 </cchm:update>

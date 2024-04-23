@@ -2,7 +2,7 @@
 
 ## 1. Intro
 
-[Link to source code](https://git.dhl.com/API-Developer-Portal/rfc_service) - feel free to fork and adjust to your own needs.
+[Link to source code](https://git.company-name.com/API-Developer-Portal/rfc_service) - feel free to fork and adjust to your own needs.
 
 GSN Automation provides an efficient solution for managing Requests for changes (RFCs). It enables users to create, update, and close GSN RFCs seamlessly, enhancing the workflow in GitHub Actions. It is quite fast, as it takes around a second for the action to perform, thanks to the Bash scripts and WSDL architecture of requests.
 
@@ -24,14 +24,14 @@ jobs:
     name: Create RFC
     uses: API-Developer-Portal/rfc_service@v5
     with:
-      Email: 'name.surname@dhl.com'
+      Email: 'name.surname@company-name.com'
       AssignmentGroup: 'CAB-BIMODAL'
       ApplicationName: 'appname'
-      EscalatedBy: 'name.surname@dhl.com'
-      ChangeCoordinator: 'name.surname@dhl.com'
+      EscalatedBy: 'name.surname@company-name.com'
+      ChangeCoordinator: 'name.surname@company-name.com'
       Title: 'deploy vx.x.x'
       Description: 'test rfc gha'
-      Approver: 'gsn_test@dhl.com'
+      Approver: 'gsn_test@company-name.com'
       Template: 'RFCXXXXXXX'
       Username: '${secrets.username}'
       Password: '${secrets.password}'
@@ -101,9 +101,9 @@ Envelops are in ```envelops```.
 
 
 ## Timeline
-![autorfc_timeline](https://media.git.dhl.com/user/15023/files/8a77f85b-d5e3-4f0b-8cf2-b8890551635e)
+![autorfc_timeline](https://media.git.company-name.com/user/15023/files/8a77f85b-d5e3-4f0b-8cf2-b8890551635e)
 
 
 
 ## Example of flow in GAPI Developer Portal
-![PortalGSNFlow](https://media.git.dhl.com/user/15023/files/eebc54f4-d760-4a78-9aae-cedda02c0078)
+![PortalGSNFlow](https://media.git.company-name.com/user/15023/files/eebc54f4-d760-4a78-9aae-cedda02c0078)
