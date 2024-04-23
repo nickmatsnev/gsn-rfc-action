@@ -1,4 +1,4 @@
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cchm="https://servicenow.dhl.com/ns/change_task/">
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cchm="https://servicenow.company-name.com/ns/change_task/">
 <soapenv:Header/>
 <soapenv:Body>
 <cchm:getKeys>

@@ -1,10 +1,10 @@
-<soapenv:Envelope xmlns:soapenv="/globals/schema.xml" xmlns:cchm="https://servicenow.dhl.com/ns/cchm_sysapproval_approver_create/">
+<soapenv:Envelope xmlns:soapenv="/globals/schema.xml" xmlns:cchm="https://servicenow.company-name.com/ns/cchm_sysapproval_approver_create/">
 <soapenv:Header/>
 <soapenv:Body>
 <cchm:insert>
 <change_request>RFCXXXXXXX</change_request>
 <sysapproval_group>NUMBER</sysapproval_group>
-<approver>name.surname@dhl.com</approver>
+<approver>name.surname@company-name.com</approver>
 </cchm:insert>
 </soapenv:Body>
 </soapenv:Envelope>

@@ -8,7 +8,7 @@ curl: (6) Could not resolve host: POST
                                  Dload  Upload   Total   Spent    Left  Speed
 
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0*   Trying 165.72.196.36:443...
-* Connected to soap.servicenow-uat.dhl.com (165.72.196.36) port 443 (#1)
+* Connected to soap.servicenow-uat.company-name.com (165.72.196.36) port 443 (#1)
 * ALPN, offering h2
 * ALPN, offering http/1.1
 *  CAfile: /etc/ssl/certs/ca-certificates.crt
@@ -54,17 +54,17 @@ curl: (6) Could not resolve host: POST
 * SSL connection using TLSv1.2 / ECDHE-RSA-AES256-GCM-SHA384
 * ALPN, server did not agree to a protocol
 * Server certificate:2024
-*  subject: C=DE; ST=Nordrhein-Westfalen; L=Bonn; O=Deutsche Post AG; CN=servicenow.dhl.com
+*  subject: C=DE; ST=Nordrhein-Westfalen; L=Bonn; O=Deutsche Post AG; CN=servicenow.company-name.com
 *  start date: Aug 28 07:52:19 2023 GMT
 *  expire date: Aug 27 07:51:19 2024 GMT
-*  subjectAltName: host "soap.servicenow-uat.dhl.com" matched cert's "soap.servicenow-uat.dhl.com"
-*  issuer: C=DE; O=Deutsche Post AG; CN=DPDHL Global TLS CA - I5
+*  subjectAltName: host "soap.servicenow-uat.company-name.com" matched cert's "soap.servicenow-uat.company-name.com"
+*  issuer: C=DE; O=Deutsche Post AG; CN=DPcompany-name Global TLS CA - I5
 *  SSL certificate verify ok.
 * Server auth using Basic with user 'snc_sys_if_gapi'
 * TLSv1.2 (OUT), TLS header, Supplemental data (23):
 } [5 bytes data]
 > POST /cchm_change_request_update.do?SOAP HTTP/1.1
-> Host: soap.servicenow-uat.dhl.com
+> Host: soap.servicenow-uat.company-name.com
 > Authorization: Basic c25jX3N5c19pZl9nYXBpOkZWSmFrMiFiaWtmYUZBSGF3cGoyJWU=
 > User-Agent: curl/7.81.0
 > Accept: */*
@@ -104,4 +104,4 @@ curl: (6) Could not resolve host: POST
 { [5 bytes data]
 
 100   349    0   320  100    29   1207    109 --:--:-- --:--:-- --:--:--  1316
-* Connection #1 to host soap.servicenow-uat.dhl.com left intact
+* Connection #1 to host soap.servicenow-uat.company-name.com left intact

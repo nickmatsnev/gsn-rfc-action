@@ -1,14 +1,18 @@
 #!/bin/bash
 
+
 ### Program to manipulate RFC ticketing within Linux ###
+
 
 ################# Styles #################
 source "/styles/colors.sh"
 ################# End of styles #################
 
+
 ################# Globals #################
 source "/globals/globals.sh"
 ################# End of globals #################
+
 
 ################# Functions #################
 source "/functions/print_envelope_attributes.sh"
@@ -16,6 +20,7 @@ source "/functions/print_response_envelope_attributes.sh"
 source "/functions/save_output.sh"
 source "/functions/update_xml_data.sh"
 ################# End of functions #################
+
 
 ################# Check if the arguments are set correctly #################
 requester=${1}
@@ -111,6 +116,7 @@ fi
 echo -e "${Yellow} Starting RFC Ticket creation $Color_Off"
 ################# End of check if the arguments are set correctly #################
 
+
 ################# Modifying ticket for creation as it is set by user in GitHub Actions #################
 xml_data=$(cat "/envelops/${environment}/rfc/create.xml")
 
@@ -132,6 +138,7 @@ echo "$xml_data"
 
 echo "$xml_data" > "/envelops/${environment}/rfc/create.xml"
 ################# End of modifying ticket for creation as it is set by user in GitHub Actions #################
+
 
 ################# Creating the RFC ticket #################
 bash "/services/rfc/create_rfc_ticket.sh" "${username}" "${password}" "${environment}"
@@ -161,7 +168,6 @@ xml_data=$(echo "$xml_data" | sed -e "s|<reject_handling>[^<]*</reject_handling>
 xml_data=$(echo "$xml_data" | sed -e "s|<u_sla_category>[^<]*</u_sla_category>|<u_sla_category>2d</u_sla_category>|g")
 
 echo "$xml_data" > "/envelops/${environment}/groupapprove/create.xml"
-
 bash "/services/groupapprove/create_group_approval.sh" "${username}" "${password}" "${environment}"
 print_response_envelope_attributes "groupapprove" "create" "${environment}"
 
@@ -177,15 +183,15 @@ xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<
 xml_data=$(echo "$xml_data" | sed -e "s|<approver>[^<]*</approver>|<approver>${approver}</approver>|g")
 
 echo "$xml_data" > "/envelops/${environment}/approver/create.xml"
-
 bash "/services/approver/create_approver.sh" "${username}" "${password}" "${environment}"
-
 print_response_envelope_attributes "approver" "create" "${environment}"
 ################ End of create approver #################
+
 
 ################# Updating to registered of the RFC ticket #################   
 update_xml_data "${environment}" "${TICKET_NUMBER}" "Registered" "${username}" "${password}"
 ################# End of updating to registered of the RFC ticket #################   
+
 
 ################# get CTask numbers #################
 xml_data=$(cat "/envelops/${environment}/rfc/read.xml")
@@ -226,11 +232,10 @@ done
 echo $uat_ctask_number
 echo $pir_ctask_number
 echo $impl_ctask_number
-
 ################# end of get CTask numbers #################
 
-# ################# Updating to assigned UAT CTask #################   
 
+################## Updating to assigned UAT CTask #################   
 xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
 
 xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${uat_ctask_number}</change_task>|g")
@@ -257,10 +262,10 @@ xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_cl
 xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes>UAT successfully tested and passed</close_notes>|g")
 
 echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
-
 bash  "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
 print_response_envelope_attributes "ctask" "update" "${environment}"
 ################# End of updating to assigned UAT CTask #################
+
 
 ################# Updating RFC to Approved for Implementation #################   
 xml_data=$(cat "/envelops/${environment}/rfc/update.xml")
@@ -269,13 +274,12 @@ xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<
 xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state> </state>|g")
 
 echo "$xml_data" > "/envelops/${environment}/rfc/update.xml"
-
 bash  "/services/rfc/afi_rfc_ticket.sh" "${username}" "${password}" "${environment}"
 print_response_envelope_attributes "rfc" "update" "${environment}"
 ################# End of Updating to RFC to Approved for Implementation #################   
 
-# ################# Updating to assigned impl CTask #################   
 
+################## Updating to assigned impl CTask #################   
 xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
 
 xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${impl_ctask_number}</change_task>|g")
@@ -289,10 +293,10 @@ xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_
 echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
 bash  "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
 print_response_envelope_attributes "ctask" "update" "${environment}"
-# ################# End of updating to assigned impl CTask #################
+################## End of updating to assigned impl CTask #################
 
-# ################# Updating to completed impl CTask #################   
 
+################## Updating to completed impl CTask #################   
 xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
 
 xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${impl_ctask_number}</change_task>|g")
@@ -300,18 +304,16 @@ xml_data=$(echo "$xml_data" | sed -e "s|<change_request>[^<]*</change_request>|<
 xml_data=$(echo "$xml_data" | sed -e "s|<state>[^<]*</state>|<state>110</state>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${end_date_sec}</work_end>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${start_date_sec}</work_start>|g")
-
 xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code>implemented</u_close_code>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes>implementation task has successfully implemented</close_notes>|g")
+
 echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
 bash  "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
 print_response_envelope_attributes "ctask" "update" "${environment}"
-# ################# End of updating to in completed impl CTask #################
+################## End of updating to in completed impl CTask #################
 
 
-
-# ################# Updating to assigned pir CTask #################   
-
+################## Updating to assigned pir CTask #################   
 xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
 
 xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${pir_ctask_number}</change_task>|g")
@@ -322,13 +324,14 @@ xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${p
 xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${pir_start_date}</work_start>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code></u_close_code>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes></close_notes>|g")
+
 echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
 bash  "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
 print_response_envelope_attributes "ctask" "update" "${environment}"
-# ################# End of updating to in assigned pir CTask #################
+################## End of updating to in assigned pir CTask #################
 
-# ################# Updating to completed pir CTask #################   
 
+################## Updating to completed pir CTask #################   
 xml_data=$(cat "/envelops/${environment}/ctask/update.xml")
 
 xml_data=$(echo "$xml_data" | sed -e "s|<change_task>[^<]*</change_task>|<change_task>${pir_ctask_number}</change_task>|g")
@@ -339,20 +342,12 @@ xml_data=$(echo "$xml_data" | sed -e "s|<work_end>[^<]*</work_end>|<work_end>${p
 xml_data=$(echo "$xml_data" | sed -e "s|<work_start>[^<]*</work_start>|<work_start>${pir_start_date}</work_start>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<u_close_code>[^<]*</u_close_code>|<u_close_code>implemented</u_close_code>|g")
 xml_data=$(echo "$xml_data" | sed -e "s|<close_notes>[^<]*</close_notes>|<close_notes>post implementation review task has successfully implemented and passed</close_notes>|g")
+
 echo "$xml_data" > "/envelops/${environment}/ctask/update.xml"
 bash  "/services/ctask/update_ctask.sh" "${username}" "${password}" "${environment}"
 print_response_envelope_attributes "ctask" "update" "${environment}"
 # ################# End of updating to  completed pir CTask #################
 
-################# Updating to RFC to review for Implementation #################   
-# bash  "/services/rfc/review_rfc_ticket.sh" "${username}" "${password}" "${environment}"
-# print_response_envelope_attributes "rfc" "update" "${environment}"
-################# End of Updating to RFC to Approved for Implementation #################   
-
-################# Updating to RFC to closed #################   
-# bash  "/services/rfc/close_rfc_ticket.sh" "${username}" "${password}" "${environment}"
-# print_response_envelope_attributes "rfc" "update" "${environment}"
-################# End of Updating to RFC to closed #################   
 
 ################# Printing the output #################
 echo -e "$Green Finishing the RFC ticket... $Color_Off"

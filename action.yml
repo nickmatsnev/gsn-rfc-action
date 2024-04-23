@@ -16,10 +16,10 @@ inputs:
     description: 'e.g. devportal'
     required: true
   EscalatedBy:
-    description: 'e.g. name.surname@dhl.com'
+    description: 'e.g. name.surname@company-name.com'
     required: true
   ChangeCoordinator:
-    description: 'e.g. name.surname@dhl.com'
+    description: 'e.g. name.surname@company-name.com'
     required: true
   Title:
     description: 'Title'
@@ -28,7 +28,7 @@ inputs:
     description: 'Description'
     required: true
   Approver:
-    description: 'gsn_template@dhl.com'
+    description: 'gsn_template@company-name.com'
     required: true
   Template:
     description: 'RFC1234567'

@@ -10,8 +10,8 @@ PASSWORD=$2
 ENV=$3
 
 case $ENV in
-    uat|UAT|Uat) URL="https://soap.servicenow-uat.dhl.com/change_task.do?SOAP" ;;
-    prod|PROD|Prod) URL="https://soap.servicenow.dhl.com/change_task.do?SOAP" ;;
+    uat|UAT|Uat) URL="https://soap.servicenow-uat.company-name.com/change_task.do?SOAP" ;;
+    prod|PROD|Prod) URL="https://soap.servicenow.company-name.com/change_task.do?SOAP" ;;
     *) echo "Invalid env, we only support [uat|prod]"; exit 1 ;;
 esac
 
@@ -24,7 +24,7 @@ curl -X POST ${URL} \
 # <?xml version="1.0" encoding="UTF-8"?>
 # <SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 #    <SOAP-ENV:Body>
-#       <getResponse xmlns="https://servicenow.dhl.com/ns/change_task/">
+#       <getResponse xmlns="https://servicenow.company-name.com/ns/change_task/">
 #          <active>1</active>
 #          <activity_due />
 #          <additional_assignee_list />
@@ -101,8 +101,8 @@ curl -X POST ${URL} \
 #          <u_date_worked />
 #          <u_downtime_duration />
 #          <u_downtime_start />
-#          <u_dpdhl_email_client_template />
-#          <u_dpdhlot_object />
+#          <u_dpcompany-name_email_client_template />
+#          <u_dpcompany-nameot_object />
 #          <u_e2e_suspended_until />
 #          <u_e2e_suspension>0</u_e2e_suspension>
 #          <u_effort_service />
